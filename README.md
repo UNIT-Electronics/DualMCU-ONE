@@ -1,6 +1,6 @@
 # DualMCU-ONE ESP32+RP2040 Microcontroller Board PCB
 
-<a href="https://uelectronics.com/"><img src="Docs/IMG_3140.jpg?raw=true" width="800px"><br/>
+<a href="https://uelectronics.com/"><img src="Docs/IMG_3140.jpg?raw=true" width="400px"><br/>
 *Click here to purchase one from the UNIT Electronics shop*</a>
 
 For more details, check out the product pages at:
