@@ -81,16 +81,6 @@ For setup and first projects, refer to the [Getting Started Guide](https://githu
 
 ---
 
-## Example Projects
-
-Check out the [Examples Directory](https://github.com/UNIT-Electronics/DualMCU-ONE/tree/main/Examples) for inspiration. It includes:
-- **IoT Projects**: Using ESP32 for Wi-Fi and Bluetooth communication.
-- **Robotics**: Controlling motors and sensors with RP2040.
-- **CAN Bus**: Efficient communication for industrial applications.
-- **RGB LED Control**: Enhance projects with visual feedback.
-
----
-
 ## Contributions
 
 We welcome contributions! Please review our [Contribution Guidelines](CONTRIBUTING.md) before submitting pull requests.
