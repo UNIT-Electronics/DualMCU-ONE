@@ -1,53 +1,56 @@
 
-# Hadware [DualMCU](https://github.com/UNIT-Electronics/DualMCU) 
+# Hadware [DualMCU-ONE](https://github.com/UNIT-Electronics/DualMCU-ONE) 
 
 
-<a href="https://github.com/UNIT-Electronics/DualMCU/blob/main/Hardware/UE0002_DualMCUv30_Schematic.pdf"><img src="Resources/Schematics_icon.jpg?raw=false" width="500px"><br/> Schematics</a>
+<a href="https://github.com/UNIT-Electronics/DualMCU/blob/main/Hardware/UE0022_DualMCU-ONE_v2.4_Schematic.pdf"><img src="Resources/Schematics_icon.jpg?raw=false" width="500px"><br/> Schematics</a>
 
 # Power Tree
 
-<img src="Resources/DUALMCU-PowerTree.jpg?raw=false" width="1000px"><br/>
+<img src="Resources/DUALMCU-PowerTree.png?raw=false" width="1000px"><br/>
 
 # Block Diagram
 
-<img src="Resources/Block Diagram.jpg?raw=false" width="800px"><br/>
+<img src="Resources/Block Diagram.png?raw=false" width="800px"><br/>
 
 # Pinout
 
-<img src="Resources/EU0002-DUALMCU V3.1.2.jpg?raw=false" width="1000px"><br/>
+<img src="Resources/Pinout_Top[EN].jpg?raw=false" width="1000px"><br/>
+
+<img src="Resources/Pinout_Btm[EN].jpg?raw=false" width="1000px"><br/>
 
 # Board Topology
 
-**Front View**<img src="Resources/Front View DualMCU Topology.jpg?raw=false" width="800px"><br/>
+**Front View**<img src="Resources/TOP TOPOLOGY.png?raw=false" width="800px"><br/>
 
-| Ref. | Description | Ref. | Description
-|----------|----------|----------|-------|
-|  U1  | Raspberry pi RP2040 Microcontroller   |   U4  | CH340C USB bus convert IC |
-|  U2  | Espressif ESP32 WROOM Wi-Fi/Bluetooth® Module   |   U5  | MCP73831 Battery Charge Management IC |
-|  U3  | W25Q16JVUXIQ 2MB Flash IC   |   U6  | AP2112K 3v3 LDO Voltage Regulator |
-|  L1  | Power On LED   |   L2  | Charge LED |
-|  L3  | Builtin LED (GPIO25)   |   L4  | WS2812B LED |
-|  L5  |RGB 2020 LED   |   J1  | Male USB Type C Connector |
-|  PB1  |RP2040 Reset Button   |   PB2  | RP2040 Boot Button |
-|  PB3  |ESP32 Flash Button    |   PB4  | ESP32 Reset Button |
-|  JP1  |RP2040 GPIO Header    |   JP2  | ESP32 GPIO Header |
-|  JP3  |RP2040 (SWD) Debug Header    |   JST1  | RP2040 I2C JST Connector |
-|  JST2  |ESP32 I2C JST Conector   |   JST3  | JST Connector for LiPo Battery |
-|  SW2  |USB Communication Selector   |   SW3  | UART DIP Switch |
+| Ref.  | Description                                     | Ref.  | Description                                         |
+|-------|-------------------------------------------------|-------|---------------------------------------------------|
+| U1    | Raspberry Pi RP2040 Microcontroller            | U4    | CH340C USB Bus Convert IC                         |
+| U2    | Espressif ESP32 WROOM Wi-Fi/Bluetooth® Module  | U5    | HUB USB IC                                        |
+| U3    | W25Q16JVUXIQ 2MB Flash IC                      | U6    | NCP1117ST33T3G 3.3V LDO Voltage Regulator         |
+| U7    | MP1482DS-LF-Z DC/DC Converter                  | U8    | TCAN1051HVD CAN BUS Transceiver                   |
+| L1    | Power On LED                                   | L2    | Built-in LED                                      |
+| L3    | TX LED                                         | L4    | RX LED                                            |
+| L5    | RGB-2020 LED                                   | L6    | WS2812B-3030 LED                                  |
+| J1    | Male USB Type C Connector                      | J2    | Power Jack Connector                              |
+| PB1   | RP2040 Reset Button                            | PB2   | RP2040 Boot Button                                |
+| PB3   | ESP32 Flash Button                             | PB4   | ESP32 Reset Button                                |
+| JP1   | ESP32 SYSTEM AND UART Header                  | JP2   | ESP32 SPI Header                                  |
+| JP3   | RP2040 SPI Header                              | JP4   | Female Headers 2.54mm, compatible with Arduino UNO Pinout |
+| JST1  | ESP32 UART JST Connector                       | JST2  | ESP32 I2C-QWIIC JST Connector                     |
+| JST3  | AUX USB COMY JST Connector                     | JST4  | AUX USB COMX JST Connector                        |
+| JST5  | RP2040 JST-3P Debugging Connector              | JST6  | RP2040 I2C-QWIIC JST Connector                    |
+| SW1   | UART DIP Switch                                |       |                                                   |
 
-**Back View**<img src="Resources/Back View DualMCU Topology.jpg?raw=false" width="800px"><br/>
+**Back View**<img src="Resources/BOTTOM TOPOLOGY.png?raw=false" width="800px"><br/>
 
-| Ref. | Description | Ref. | Description
-|----------|----------|----------|-------|
-|  U7  | Support for the ATECC608A-MAHDA-T Crypto IC   |   J2  | Micro SD Card Connector |
-|  SW1  | Power Switch   |   SB1  | Charge LED Solder Bridge (default disconnected) |
-|  SB2  | VBUS Sense Solder Bridge (default disconnected) |   SB3  | AP2112K 3v3 LDO Voltage Regulator |
-|  SB4  | ESP32 Reset Solder Bridge (default disconnected)   |   SB5  | SCL Signal Selector Solder Bridge for ATECC608A-MAHDA-T (default disconnected)|
-|  SB6  | SDA Signal Selector Solder Bridge forATECC608A-MAHDA-T (default disconnected)|   B1  | Lipo Battery Solder Pads |
-
+| Ref.  | Description                                     | Ref.  | Description                                         |
+|-------|-------------------------------------------------|-------|---------------------------------------------------|
+| X1    | Auxiliary MicroSD Card Connector               | X2    | Auxiliary FPC-24P Connector                       |
+| SB1   | RP2040 to ESP32_RST Solder Bridge (disconnected)| SB2   | 120R CAN BUS Resistor Solder Bridge (disconnected)|
+| SB3   | Steps ADC3 Leakage Solder Bridge (disconnected)| SB4   | ESP32-IO14 to RP2040-GPIO15 Solder Bridge (connected) |
+| TP1   | USB D- Test Point                              | TP2   | USB D+ Test Point                                 |
 
 
-[C++ & Micropython Examples files for the UNIT DualMCU.](https://github.com/UNIT-Electronics/DualMCU/tree/main/Examples) 
 
 For more details, check out the product pages at
 * https://uelectronics.com/
