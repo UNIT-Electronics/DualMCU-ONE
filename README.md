@@ -66,7 +66,7 @@ The **DualMCU-ONE** supports:
 - **Arduino IDE** for both RP2040 and ESP32.
 - **MicroPython** and **CircuitPython** with IDEs like Thonny.
 
-For setup and first projects, refer to the [Getting Started Guide](https://github.com/UNIT-Electronics/DualMCU-ONE_Getting_Started).
+For setup and first projects, refer to the [Getting Started Guide](https://unit-electronics.github.io/DualMCU-ONE/index.html).
 
 ---
 
