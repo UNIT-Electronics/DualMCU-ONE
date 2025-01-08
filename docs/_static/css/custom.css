@@ -1,0 +1,34 @@
+/* Contenedor del botón */
+.custom-button {
+    display: flex; /* Flexbox para diseño flexible */
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+    margin: 0; /* Sin margen extra */
+    padding: 10px; /* Espaciado adicional opcional */
+    text-align: center; /* Centrado del texto */
+}
+
+/* Enlace estilizado como botón */
+.custom-button a {
+    color: #3498db; /* Azul suave para el texto */
+    font-size: 24px; /* Tamaño del texto ligeramente mayor */
+    font-weight: bold; /* Negrita para destacar */
+    text-decoration: none; /* Sin subrayado */
+    display: inline-flex; /* Alineación flexible para ícono y texto */
+    align-items: center; /* Centrado vertical */
+    gap: 12px; /* Espacio entre ícono y texto */
+    cursor: pointer; /* Cursor en forma de mano */
+    transition: color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
+}
+
+/* Hover para el enlace */
+.custom-button a:hover {
+    color: #1abc9c; /* Verde menta en hover */
+    transform: scale(1.1); /* Ligero aumento */
+}
+
+/* Ícono */
+.custom-button a i {
+    font-size: 28px; /* Tamaño del ícono */
+    color: inherit; /* Hereda el color del texto */
+}

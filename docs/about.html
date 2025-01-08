@@ -1,0 +1,904 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>DualMCU ONE Development Board &#8212; DualMCU ONE Development Board 0.0.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=b0471bf0" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=e645c8fa"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'about';</script>
+    <link rel="author" title="About these documents" href="#" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Pinout DualMCU ONE Board" href="pinout.html" />
+    <link rel="prev" title="DualMCU ONE Getting Started" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><div class="custom-button">
+    <a href="https://uelectronics.com/" role="button" target="_blank">
+        <i class="fa fa-house"></i> Wiki Unit
+</div></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/Logo-UNIT_Web-04-800x182.png" class="logo__image only-light" alt="DualMCU ONE Development Board 0.0.1 documentation - Home"/>
+    <script>document.write(`<img src="_static/Logo-UNIT_Web-04-800x182.png" class="logo__image only-dark" alt="DualMCU ONE Development Board 0.0.1 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">DualMCU ONE Development Board</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinout.html">Pinout DualMCU ONE Board</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">DualMCU Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="env.html">IDE Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lib.html">Installing packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio.html">General Purpose Input/Output (GPIO) RP2040 &amp; ESP32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adc.html">Analog to Digital Conversion</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="i2c.html">I2C (Inter-Integrated Circuit)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="library.html">DualMCU Library (MicroPython)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="jst.html">Conector JST SH 1.0mm 4 pins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spi.html">SPI (Serial Peripheral Interface)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WS2812.html">WS2812 Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="communication.html">Communication</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="duino.html">Arduino Shields Compatibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="report.html">How to Generate an Error Report</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/UNIT-Electronics/DualMCU-ONE" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/UNIT-Electronics/DualMCU-ONE/edit/main/docs/about.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/UNIT-Electronics/DualMCU-ONE/issues/new?title=Issue%20on%20page%20%2Fabout.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/about.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>DualMCU ONE Development Board</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#squematic-of-the-dualmcu-one-board">Squematic of the DualMCU ONE board</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pin-mapping">Pin Mapping</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-of-analog-pins">Distribution of analog pins</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-of-digital-pins-d0-to-d7">Distribution of digital pins D0 to D7</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-of-digital-pins-d8-to-d13">Distribution of digital pins D8 to D13</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rp2040-microcontroller">RP2040 Microcontroller</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#features">Features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-and-storage">Memory and Storage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manufacturing-and-power-efficiency">Manufacturing and Power Efficiency</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-specifications">Technical Specifications</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esp32-microcontroller">ESP32 Microcontroller</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specifications">Specifications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peripherals">Peripherals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security">Security</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-consumption">Power Consumption</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#development-interfaces">Development Interfaces</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-dimensions">Physical Dimensions</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="dualmcu-one-development-board">
+<h1>DualMCU ONE Development Board<a class="headerlink" href="#dualmcu-one-development-board" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>The DualMCU ONE development board is a versatile platform that combines the power of two microcontrollers: the RP2040 and the ESP32. This combination allows developers to take advantage of the unique features and capabilities of each microcontroller, making it ideal for a wide range of applications.</p>
+<figure class="align-center" id="id1">
+<span id="figure-dualmcu-one2"></span><a class="reference internal image-reference" href="_images/IMG_3145.jpg"><img alt="DualMCU ONE" src="_images/IMG_3145.jpg" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">DualMCU ONE board</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The desing is inspired by the connections of Arduino UNO Rev3 , making it easy to use with a wide range of shields and accessories. The board also features a USB-C connector for power and data, a microSD card slot.</p>
+</section>
+<section id="squematic-of-the-dualmcu-one-board">
+<h2>Squematic of the DualMCU ONE board<a class="headerlink" href="#squematic-of-the-dualmcu-one-board" title="Link to this heading">#</a></h2>
+<div style="text-align: center;">
+   <button style="background-color: #87cefa; color: white; border: none; padding: 10px 20px;" onclick="window.open('./_static/DualMCU_R-ONE_V2.pdf', '_blank')">UNIT DualMCU R-ONE</button>
+</div>
+<br> </br>
+<iframe src="./_static/DualMCU_R-ONE_V2.pdf" style="width:100%; height:500px;" frameborder="0"></iframe>
+<br> </br></section>
+<section id="pin-mapping">
+<h2>Pin Mapping<a class="headerlink" href="#pin-mapping" title="Link to this heading">#</a></h2>
+<p>Digital and analog pins on the DualMCU ONE board are mapped to the corresponding GPIO pins on the RP2040 microcontroller.
+This mapping allows you to easily identify the pins you need to use for your project.</p>
+<section id="distribution-of-analog-pins">
+<h3>Distribution of analog pins<a class="headerlink" href="#distribution-of-analog-pins" title="Link to this heading">#</a></h3>
+<p>Analog pins A0 to A3, TX1, and RX1 are mapped to the corresponding GPIO pins on the RP2040 microcontroller.</p>
+<figure class="align-center" id="id2">
+<span id="figure-adc-pins"></span><a class="reference internal image-reference" href="_images/pins_mapping_adc.png"><img alt="Dual" src="_images/pins_mapping_adc.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">DualMCU ONE pins A0 to A3, TX1, RX1</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="pst-scrollable-table-container"><table class="table table-center" id="id3">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">Analog Pin Mapping</span><a class="headerlink" href="#id3" title="Link to this table">#</a></caption>
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>PIN BOARD</p></th>
+<th class="head"><p>GPIO RP2040</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A0</p></td>
+<td><p>26</p></td>
+</tr>
+<tr class="row-odd"><td><p>A1</p></td>
+<td><p>27</p></td>
+</tr>
+<tr class="row-even"><td><p>A2</p></td>
+<td><p>28</p></td>
+</tr>
+<tr class="row-odd"><td><p>A3</p></td>
+<td><p>29</p></td>
+</tr>
+<tr class="row-even"><td><p>TX1 / SDA0</p></td>
+<td><p>22</p></td>
+</tr>
+<tr class="row-odd"><td><p>RX1 / SCL0</p></td>
+<td><p>23</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="distribution-of-digital-pins-d0-to-d7">
+<h3>Distribution of digital pins D0 to D7<a class="headerlink" href="#distribution-of-digital-pins-d0-to-d7" title="Link to this heading">#</a></h3>
+<figure class="align-center" id="id4">
+<span id="figure-pins2"></span><a class="reference internal image-reference" href="_images/pins_mapping1.png"><img alt="Dual" src="_images/pins_mapping1.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">DualMCU ONE pins D0 to D7</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="pst-scrollable-table-container"><table class="table table-center" id="id5">
+<caption><span class="caption-number">Table 2 </span><span class="caption-text">Digital Pin Mapping</span><a class="headerlink" href="#id5" title="Link to this table">#</a></caption>
+<colgroup>
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>PIN BOARD</p></th>
+<th class="head"><p>Special Function</p></th>
+<th class="head"><p>GPIO RP2040</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>D0</p></td>
+<td><p>RX0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>D1</p></td>
+<td><p>TX0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>D2</p></td>
+<td><p>RX1</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>D3</p></td>
+<td><p>TX1</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>D4</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>9</p></td>
+</tr>
+<tr class="row-odd"><td><p>D5</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-even"><td><p>D6</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p>D7</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>10</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="distribution-of-digital-pins-d8-to-d13">
+<h3>Distribution of digital pins D8 to D13<a class="headerlink" href="#distribution-of-digital-pins-d8-to-d13" title="Link to this heading">#</a></h3>
+<figure class="align-center" id="id6">
+<span id="figure-pins"></span><a class="reference internal image-reference" href="_images/pins_mapping.png"><img alt="Dual" src="_images/pins_mapping.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">DualMCU ONE pins D8 to D13</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="pst-scrollable-table-container"><table class="table table-center" id="id7">
+<caption><span class="caption-number">Table 3 </span><span class="caption-text">Digital Pin Mapping 2</span><a class="headerlink" href="#id7" title="Link to this table">#</a></caption>
+<colgroup>
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>PIN BOARD</p></th>
+<th class="head"><p>Special Function</p></th>
+<th class="head"><p>GPIO RP2040</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>D8</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>D9</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p>D10</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p>D11</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>19</p></td>
+</tr>
+<tr class="row-even"><td><p>D12</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-odd"><td><p>D13</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-even"><td><p>SDA0</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>20</p></td>
+</tr>
+<tr class="row-odd"><td><p>SCL0</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>21</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="rp2040-microcontroller">
+<h2>RP2040 Microcontroller<a class="headerlink" href="#rp2040-microcontroller" title="Link to this heading">#</a></h2>
+<p>The RP2040 is a powerful microcontroller featuring a dual-core ARM Cortex-M0+ processor, 264KB of SRAM, and a wide range of peripherals.</p>
+<figure class="align-center" id="id8">
+<span id="figure-rp2040"></span><a class="reference internal image-reference" href="_images/Raspberry-pi.jpg"><img alt="RP2040" src="_images/Raspberry-pi.jpg" style="width: 40%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">RP2040 chip</span><a class="headerlink" href="#id8" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The <strong>RP2040</strong> is Raspberry Pi’s microcontroller, engineered to deliver high performance, cost-efficiency, and user-friendliness within the microcontroller domain.</p>
+<section id="features">
+<h3>Features<a class="headerlink" href="#features" title="Link to this heading">#</a></h3>
+<p>The RP2040 boasts several advanced features, including:</p>
+<ul class="simple">
+<li><p><strong>Symmetrical Dual-Core Processor</strong>: Equipped with dual ARM Cortex-M0+ processors operating at 133MHz.</p></li>
+<li><p><strong>Large On-Chip Memory</strong>: 264kB of SRAM divided into six independent banks.</p></li>
+<li><p><strong>Deterministic Bus Fabric</strong>: Ensures reliable and predictable operation.</p></li>
+<li><p><strong>Rich Peripheral Set</strong>: Enhanced with Raspberry Pi’s unique Programmable I/O (PIO) subsystem.</p></li>
+</ul>
+<p>Professional users will find the RP2040’s power and flexibility unrivaled, thanks to its comprehensive documentation, polished MicroPython port, and UF2 bootloader in ROM, which lowers the entry barrier for beginners and hobbyists.</p>
+</section>
+<section id="memory-and-storage">
+<h3>Memory and Storage<a class="headerlink" href="#memory-and-storage" title="Link to this heading">#</a></h3>
+<p>The RP2040 is a stateless device supporting cached execute-in-place from external QSPI memory. This design allows users to choose the appropriate density of non-volatile storage for their applications, benefiting from the low pricing of standard flash parts.</p>
+</section>
+<section id="manufacturing-and-power-efficiency">
+<h3>Manufacturing and Power Efficiency<a class="headerlink" href="#manufacturing-and-power-efficiency" title="Link to this heading">#</a></h3>
+<p>Manufactured on a modern 40nm process node, the RP2040 delivers:</p>
+<ul class="simple">
+<li><p><strong>High Performance</strong></p></li>
+<li><p><strong>Low Dynamic Power Consumption</strong></p></li>
+<li><p><strong>Minimal Leakage</strong></p></li>
+</ul>
+<p>It includes various low-power modes, enabling extended-duration operation on battery power.</p>
+</section>
+<section id="technical-specifications">
+<h3>Technical Specifications<a class="headerlink" href="#technical-specifications" title="Link to this heading">#</a></h3>
+<p><strong>Key Features:</strong></p>
+<ul class="simple">
+<li><p><strong>Dual ARM Cortex-M0+ &#64; 133MHz</strong></p></li>
+<li><p><strong>264kB on-chip SRAM</strong> in six independent banks</p></li>
+<li><p><strong>Support for up to 16MB of off-chip Flash memory</strong> via dedicated QSPI bus</p></li>
+<li><p><strong>DMA controller</strong></p></li>
+<li><p><strong>Fully-connected AHB crossbar</strong></p></li>
+<li><p><strong>Interpolator and integer divider peripherals</strong></p></li>
+<li><p><strong>On-chip programmable LDO</strong> to generate core voltage</p></li>
+<li><p><strong>2 on-chip PLLs</strong> to generate USB and core clocks</p></li>
+<li><p><strong>30 GPIO pins</strong>, 4 of which can be used as analog inputs</p></li>
+</ul>
+<p><strong>Peripherals:</strong></p>
+<ul class="simple">
+<li><p><strong>2 UARTs</strong></p></li>
+<li><p><strong>2 SPI controllers</strong></p></li>
+<li><p><strong>2 I2C controllers</strong></p></li>
+<li><p><strong>16 PWM channels</strong></p></li>
+<li><p><strong>USB 1.1 controller and PHY</strong>, with host and device support</p></li>
+<li><p><strong>8 PIO state machines</strong></p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For more information about the RP2040 microcontroller, refer to the official documentation available on the <a class="reference external" href="https://www.raspberrypi.com/documentation/microcontrollers/rp2040.html">Raspberry Pi website</a>.</p>
+</div>
+</section>
+</section>
+<section id="esp32-microcontroller">
+<h2>ESP32 Microcontroller<a class="headerlink" href="#esp32-microcontroller" title="Link to this heading">#</a></h2>
+<p>The <strong>ESP32</strong> was initially released in September 2016 by Espressif Systems. Since then, it has gained immense popularity in the hardware development and IoT project communities due to its versatility, power, and affordability. It is used in a wide range of applications, from home projects to industrial solutions.</p>
+<figure class="align-center" id="id9">
+<span id="figure-esp32"></span><a class="reference internal image-reference" href="_images/esp32.jpg"><img alt="ESP32" src="_images/esp32.jpg" style="width: 40%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">ESP32 chip</span><a class="headerlink" href="#id9" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The ESP32 is a series of low-cost, low-power microcontrollers with integrated Wi-Fi and Bluetooth capabilities. Developed by Espressif Systems, it is widely used in various Internet of Things (IoT) applications, including home automation, wearable devices, and industrial automation. The ESP32 offers a rich set of peripherals, including GPIO, SPI, I2C, UART, ADC, DAC, and more, making it versatile for a wide range of projects. Its popularity stems from its affordability, flexibility, and robustness. Developers often use the Arduino IDE or the ESP-IDF (Espressif IoT Development Framework) to program the ESP32.</p>
+<section id="specifications">
+<h3>Specifications<a class="headerlink" href="#specifications" title="Link to this heading">#</a></h3>
+<p>The specifications of the ESP32 can vary slightly between different variants and models, but here is an overview of common features:</p>
+<p><strong>Microcontroller</strong>: Dual-core Tensilica LX6/LX7 microprocessor</p>
+<p><strong>Clock Speed</strong>: Up to 240 MHz</p>
+<p><strong>RAM</strong>: 520 KB to 4 MB</p>
+<p><strong>Flash Memory</strong>: 4 MB to 16 MB</p>
+<p><strong>Wi-Fi</strong>: 802.11 b/g/n (2.4 GHz)</p>
+<p><strong>Bluetooth</strong>: Bluetooth 4.2 and Bluetooth 5.0 BLE (Bluetooth Low Energy)</p>
+</section>
+<section id="peripherals">
+<h3>Peripherals<a class="headerlink" href="#peripherals" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>GPIO (General Purpose Input/Output)</strong></p></li>
+<li><p><strong>SPI (Serial Peripheral Interface)</strong></p></li>
+<li><p><strong>I2C (Inter-Integrated Circuit)</strong></p></li>
+<li><p><strong>UART (Universal Asynchronous Receiver-Transmitter)</strong></p></li>
+<li><p><strong>ADC (Analog to Digital Converter)</strong></p></li>
+<li><p><strong>DAC (Digital to Analog Converter)</strong></p></li>
+<li><p><strong>PWM (Pulse Width Modulation)</strong></p></li>
+<li><p><strong>RTC (Real Time Clock)</strong></p></li>
+<li><p><strong>Touch sensor</strong></p></li>
+<li><p><strong>Interrupt controller</strong></p></li>
+</ul>
+</section>
+<section id="security">
+<h3>Security<a class="headerlink" href="#security" title="Link to this heading">#</a></h3>
+<p>Support for cryptography, including SSL/TLS, WPA/WPA2, and AES.</p>
+</section>
+<section id="power-consumption">
+<h3>Power Consumption<a class="headerlink" href="#power-consumption" title="Link to this heading">#</a></h3>
+<p>Low-power modes to conserve battery life in IoT applications.</p>
+</section>
+<section id="development-interfaces">
+<h3>Development Interfaces<a class="headerlink" href="#development-interfaces" title="Link to this heading">#</a></h3>
+<p>Compatible with the Arduino IDE and Espressif’s ESP-IDF for software development.</p>
+</section>
+<section id="physical-dimensions">
+<h3>Physical Dimensions<a class="headerlink" href="#physical-dimensions" title="Link to this heading">#</a></h3>
+<p>Dimensions vary depending on the specific module, but they are generally compact and suitable for embedded applications.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>These are the general specifications; however, depending on the manufacturer and the exact model of the ESP32, there may be differences in specific features and additional capabilities.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">DualMCU ONE Getting Started</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="pinout.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Pinout DualMCU ONE Board</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#squematic-of-the-dualmcu-one-board">Squematic of the DualMCU ONE board</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pin-mapping">Pin Mapping</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-of-analog-pins">Distribution of analog pins</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-of-digital-pins-d0-to-d7">Distribution of digital pins D0 to D7</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-of-digital-pins-d8-to-d13">Distribution of digital pins D8 to D13</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rp2040-microcontroller">RP2040 Microcontroller</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#features">Features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-and-storage">Memory and Storage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manufacturing-and-power-efficiency">Manufacturing and Power Efficiency</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-specifications">Technical Specifications</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esp32-microcontroller">ESP32 Microcontroller</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specifications">Specifications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peripherals">Peripherals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security">Security</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-consumption">Power Consumption</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#development-interfaces">Development Interfaces</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-dimensions">Physical Dimensions</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Cesar Bautista
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Unit Electronics.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
