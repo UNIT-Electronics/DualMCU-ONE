@@ -2,11 +2,11 @@
 # Hadware [DualMCU-ONE](https://github.com/UNIT-Electronics/DualMCU-ONE) 
 
 
-<a href="https://github.com/UNIT-Electronics/DualMCU/blob/main/Hardware/UE0022_DualMCU-ONE_v2.4_Schematic.pdf"><img src="Resources/Schematics_icon.jpg?raw=false" width="500px"><br/> Schematics</a>
+<a href="https://github.com/UNIT-Electronics/DualMCU-ONE/blob/main/Hardware/UE0022_DualMCU-ONE_v2.4_Schematic.pdf"><img src="Resources/Schematics_icon.jpg?raw=false" width="500px"><br/> Schematics</a>
 
 # Power Tree
 
-<img src="Resources/DUALMCU-PowerTree.png?raw=false" width="1000px"><br/>
+<img src="Resources/PowerTree.png?raw=false" width="1000px"><br/>
 
 # Block Diagram
 
@@ -35,7 +35,7 @@
 | PB1   | RP2040 Reset Button                            | PB2   | RP2040 Boot Button                                |
 | PB3   | ESP32 Flash Button                             | PB4   | ESP32 Reset Button                                |
 | JP1   | ESP32 SYSTEM AND UART Header                  | JP2   | ESP32 SPI Header                                  |
-| JP3   | RP2040 SPI Header                              | JP4   | Female Headers 2.54mm, compatible with Arduino UNO Pinout |
+| JP3   | RP2040 SPI Header                              | JP4   | JP4-1,JP4-2,JP4-3,JP4-4: Female Headers 2.54mm, compatible with Arduino UNO Pinout |
 | JST1  | ESP32 UART JST Connector                       | JST2  | ESP32 I2C-QWIIC JST Connector                     |
 | JST3  | AUX USB COMY JST Connector                     | JST4  | AUX USB COMX JST Connector                        |
 | JST5  | RP2040 JST-3P Debugging Connector              | JST6  | RP2040 I2C-QWIIC JST Connector                    |
