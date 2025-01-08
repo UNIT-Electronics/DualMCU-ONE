@@ -14,9 +14,9 @@
 
 # Pinout
 
-<img src="Resources/Pinout_Top[EN].jpg?raw=false" width="1000px"><br/>
+<img src="Resources/Pinout_Top_EN_.jpg?raw=false" width="1000px"><br/>
 
-<img src="Resources/Pinout_Btm[EN].jpg?raw=false" width="1000px"><br/>
+<img src="Resources/Pinout_Btm_EN_.jpg?raw=false" width="1000px"><br/>
 
 # Board Topology
 
