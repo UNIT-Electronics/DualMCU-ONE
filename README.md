@@ -41,7 +41,7 @@ Key enhancements over its predecessor, the DualMCU, include:
   - Optional MicroSD socket (up to 64GB), connected via ESP32's QSPI interface.
 
 - **I2C Connectors**:
-  - JST-SH connectors compatible with STEMMA and QWIIC devices.
+  - JST-SH connectors compatible with STEMMA and QWIIC ecosystems.
 
 - **Additional Features**:
   - RGB 2020 LED and WS2812B LED for visual feedback.
