@@ -6,7 +6,7 @@
 For more details, check out the product pages at:
 * [UNIT Electronics Website](https://uelectronics.com/)
 * [Hardware-DualMCU-ONE](https://github.com/UNIT-Electronics/DualMCU-ONE/tree/main/Hardware)
-* [Product Reference Manual.pdf](https://github.com/UNIT-Electronics/DualMCU-ONE/blob/main/DualMCU_ONE_Product_Reference_Manual.pdf)
+* [Product Reference Manual.pdf](https://github.com/UNIT-Electronics/DualMCU-ONE/blob/main/DualMCU-ONE(Product Reference Manual).pdf)
 * [DualMCU-ONE_Getting_Started](https://unit-electronics.github.io/DualMCU-ONE/index.html)
 
 ---
@@ -72,12 +72,26 @@ For setup and first projects, refer to the [Getting Started Guide](https://unit-
 
 ## Development Resources
 
-| Resource                          | Link                                                                                   |
-|-----------------------------------|----------------------------------------------------------------------------------------|
-| **Arduino Package RP2040 JSON**   | [RP2040 Package](https://github.com/UNIT-Electronics/Uelectronics-RP2040-Arduino-Package) |
-| **Arduino Package ESP32 JSON**    | [ESP32 Package](https://github.com/UNIT-Electronics/Uelectronics-ESP32-Arduino-Package) |
-| **MicroPython Documentation**     | [MicroPython.org](https://micropython.org/)                                            |
-| **CircuitPython Documentation**   | [Adafruit CircuitPython](https://circuitpython.org/)                                   |
+| Resource                                   | Link                                                                                   |
+|-------------------------------------------|----------------------------------------------------------------------------------------|
+| **Arduino Package RP2040 JSON**           | [RP2040 Package](https://github.com/UNIT-Electronics/Uelectronics-RP2040-Arduino-Package) |
+| **Arduino Package ESP32 JSON**            | [ESP32 Package](https://github.com/UNIT-Electronics/Uelectronics-ESP32-Arduino-Package) |
+| **MicroPython Documentation**             | [MicroPython.org](https://micropython.org/)                                            |
+| **CircuitPython Documentation**           | [Adafruit CircuitPython](https://circuitpython.org/)                                   |
+| **UNIT DualMCU-ONE Documentation**        | [DualMCU-ONE Documentation](https://github.com/UNIT-Electronics/DualMCU-ONE)          |
+| **Getting Started with DualMCU-ONE**      | [DualMCU-ONE Guide](https://unit-electronics.github.io/DualMCU-ONE/index.html)        |
+| **Thonny IDE**                            | [Thonny.org](https://thonny.org/)                                                     |
+| **Arduino IDE**                           | [Arduino IDE](https://www.arduino.cc/en/software)                                     |
+| **CH340 Driver**                          | [CH340 Driver](http://www.wch-ic.com/downloads/CH341SER_ZIP.html)                     |
+| **Visual Studio Code**                    | [Visual Studio Code](https://code.visualstudio.com/download)                          |
+| **Raspberry Pi Pico RP2040 Documentation**| [RP2040 Documentation](https://www.raspberrypi.com/documentation/microcontrollers/)   |
+| **Raspberry Pi Pico Python SDK**          | [Python SDK](https://datasheets.raspberrypi.com/pico/raspberry-pi-pico-python-sdk.pdf) |
+| **Raspberry Pi Pico MicroPython Examples**| [MicroPython Examples](https://github.com/raspberrypi/pico-micropython-examples)      |
+| **Raspberry Pi Pico C/C++ SDK**           | [C/C++ SDK](https://www.raspberrypi.com/documentation/microcontrollers/c_sdk.html)    |
+| **Raspberry Pi Pico C/C++ Examples**      | [C/C++ Examples](https://github.com/raspberrypi/pico-examples)                        |
+| **RP2040 Datasheet**                      | [RP2040 Datasheet](https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf)    |
+| **ESP32 WROOM 8MB Datasheet**             | [ESP32 WROOM Datasheet](https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.pdf) |
+
 
 ---
 
