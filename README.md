@@ -19,7 +19,7 @@ Key enhancements over its predecessor, the DualMCU, include:
 - SPI communication between the MCUs for improved data transfer.
 - A USB Type-C hub, replacing the USB communication switch.
 - CAN bus connectivity for industrial and automotive environments.
-- Onboard connectors compatible with STEMMA, QWIIC, and GROVE ecosystems.
+- Onboard connectors compatible with STEMMA and QWIIC ecosystems.
 
 ---
 
