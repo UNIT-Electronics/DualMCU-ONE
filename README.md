@@ -6,7 +6,7 @@
 For more details, check out the product pages at:
 * [UNIT Electronics Website](https://uelectronics.com/)
 * [Hardware-DualMCU-ONE](https://github.com/UNIT-Electronics/DualMCU-ONE/tree/main/Hardware)
-* [Product Reference Manual](https://github.com/UNIT-Electronics/DualMCU-ONE/blob/main/DualMCU-ONE(Product%20Reference%20Manual).pdf)
+* [Product Reference Manual](https://github.com/UNIT-Electronics/DualMCU-ONE/blob/main/DualMCU-ONE(Product%20Reference%20Manual%20)%5BEN%5D.pdf)
 * [DualMCU-ONE_Getting_Started](https://unit-electronics.github.io/DualMCU-ONE/index.html)
 
 ---
