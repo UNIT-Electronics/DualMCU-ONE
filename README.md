@@ -15,9 +15,15 @@ For more details, check out the product pages at:
 
 The **UNIT DualMCU-ONE** is a highly versatile development board that integrates the power of two microcontrollers: the ESP32 and the RP2040. Designed for advanced IoT, robotics, and industrial applications, it provides enhanced connectivity, robust power management, and full compatibility with Arduino UNO shields.
 
-Arduino Uno Compatibility
-If you are just starting to explore electronics or already have experience working with Arduino Uno, the DualMCU-ONE is the perfect choice for you. Its pin distribution on the female headers is fully compatible with that of Arduino Uno, ensuring that you can use most shields designed for that platform without making significant changes to your existing code.
-This means you can easily replace your Arduino Uno board with the DualMCU-ONE and enjoy its extensive compatibility, while keeping in mind that the DualMCU-ONE operates with 3.3V logic levels instead of Arduino Uno’s typical 5V.
+> ⚠️ **Important Note:**  
+> The DualMCU-ONE operates with **3.3V logic levels** instead of the Arduino Uno’s typical 5V.  
+> Make sure any shield or peripheral connected is compatible with 3.3V logic to avoid potential damage.
+
+> ✅ **Arduino Uno Compatibility:**  
+> The DualMCU-ONE is fully compatible with Arduino Uno shields.  
+> Its female headers follow the same pin distribution as the Uno, making it easy to migrate existing projects or reuse accessories.  
+> This makes it a perfect choice whether you're just starting out or already experienced with Arduino.
+
 
 Key enhancements over its predecessor, the DualMCU, include:
 - SPI communication between the MCUs for improved data transfer.
