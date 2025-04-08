@@ -15,11 +15,6 @@ For more details, check out the product pages at:
 
 The **UNIT DualMCU-ONE** is a highly versatile development board that integrates the power of two microcontrollers: the ESP32 and the RP2040. Designed for advanced IoT, robotics, and industrial applications, it provides enhanced connectivity, robust power management, and full compatibility with Arduino UNO shields.
 
-> ✅ **Arduino Uno Compatibility:**  
-> The DualMCU-ONE is fully compatible with Arduino Uno shields.  
-> Its female headers follow the same pin distribution as the Uno, making it easy to migrate existing projects or reuse accessories.  
-> This makes it a perfect choice whether you're just starting out or already experienced with Arduino.
-
 > ⚠️ **Important Note:**  
 > The DualMCU-ONE operates with **3.3V logic levels** instead of the Arduino Uno’s typical 5V.  
 > Make sure any shield or peripheral connected is compatible with 3.3V logic to avoid potential damage.
@@ -29,6 +24,8 @@ Key enhancements over its predecessor, the DualMCU, include:
 - A USB Type-C hub, replacing the USB communication switch.
 - CAN bus connectivity for industrial and automotive environments.
 - Onboard connectors compatible with STEMMA and QWIIC ecosystems.
+
+
 
 ---
 
@@ -56,6 +53,12 @@ Key enhancements over its predecessor, the DualMCU, include:
   - RGB 2020 LED and WS2812B LED for visual feedback.
   - Optional FPC-24P connector for expanded ESP32 GPIO access.
 
+  > ✅ **Arduino Uno Compatibility:**  
+> The DualMCU-ONE is fully compatible with Arduino Uno shields.  
+> Its female headers follow the same pin distribution as the Uno, making it easy to migrate existing projects or reuse accessories.  
+> This makes it a perfect choice whether you're just starting out or already experienced with Arduino.
+
+> Note: While the DualMCU-ONE is fully compatible with Arduino UNO shields in terms of pin layout, it operates at 3.3V logic levels, unlike the Arduino Uno which uses 5V. Always   verify shield voltage compatibility before connecting.
 ---
 
 ## Applications
@@ -67,7 +70,6 @@ The **DualMCU-ONE** is ideal for:
 - **Prototyping**: Full Arduino UNO shield compatibility.
 - **Robotics**: Multi-core processing for complex systems.
 
-> Note: While the DualMCU-ONE is fully compatible with Arduino UNO shields in terms of pin layout, it operates at 3.3V logic levels, unlike the Arduino Uno which uses 5V. Always   verify shield voltage compatibility before connecting.
 ---
 
 ## Getting Started
