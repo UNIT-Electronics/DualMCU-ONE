@@ -1,5 +1,5 @@
-Installing packages 
-===================
+Installing packages - Micropython
+==================================
 
 This section will guide you through the installation process of the required libraries using 
 the `pip <https://pip.pypa.io/en/stable/>`_ package manager.

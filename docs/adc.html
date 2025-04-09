@@ -31,8 +31,9 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
-    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=b0471bf0" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=60269fe5" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -42,6 +43,8 @@
     <script src="_static/documentation_options.js?v=e645c8fa"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=00122899"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -130,10 +133,6 @@
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item"><div class="custom-button">
-    <a href="https://uelectronics.com/" role="button" target="_blank">
-        <i class="fa fa-house"></i> Wiki Unit
-</div></div>
         <div class="sidebar-primary-item">
 
   
@@ -171,11 +170,10 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="about.html">DualMCU ONE Development Board</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pinout.html">Pinout DualMCU ONE Board</a></li>
-<li class="toctree-l1"><a class="reference internal" href="setup.html">DualMCU Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">DualMCU ONE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinout.html">Pinout</a></li>
 <li class="toctree-l1"><a class="reference internal" href="env.html">IDE Setup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lib.html">Installing packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lib.html">Installing packages - Micropython</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gpio.html">General Purpose Input/Output (GPIO) RP2040 &amp; ESP32</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Analog to Digital Conversion</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="i2c.html">I2C (Inter-Integrated Circuit)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -430,7 +428,7 @@ document.write(`
 <figure class="align-center" id="id1">
 <span id="figure-adc"></span><a class="reference internal image-reference" href="_images/adc.png"><img alt="ADC" src="_images/adc.png" style="width: 20%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 29 </span><span class="caption-text">ADC Pins</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 21 </span><span class="caption-text">ADC Pins</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="adc-definition">
@@ -650,7 +648,7 @@ By Cesar Bautista
 
   <p class="copyright">
     
-      © Copyright 2025, Unit Electronics.
+      © Copyright 2024, Unit Electronics.
       <br/>
     
   </p>

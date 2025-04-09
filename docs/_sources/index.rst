@@ -46,18 +46,16 @@ This guide is designed to help developers familiarize themselves with the DualMC
 
    about
    pinout
-   setup
    env
    lib
    gpio
    adc
-  
    i2c
    jst
    spi
    WS2812
    communication
-   
+   upy
    duino
    report
    

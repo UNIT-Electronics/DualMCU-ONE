@@ -1,5 +1,5 @@
 IDE Setup
-==========
+=====================
 
 MicroPython Installation on DualMCU 
 -----------------------------------
@@ -68,7 +68,6 @@ To use MicroPython, it is recommended to consider an update. Follow these steps 
 
     - **Variant**: Raspberry Pi Pico / Pico H
     - **Version**: 1.23.0
-    
 .. _figure_rp2040_installer:
 
 .. figure:: /_static/rp2040_installer.png
@@ -139,36 +138,35 @@ Inside the **Examples** folder, you will find a basic example called "blink" tha
 
 
 
-Arduino IDE Installation environment 
-------------------------------------
 
 Uelectronics-RP2040-Arduino-Package
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------
 
 Uelectronics Arduino core is a ported version of the `Raspberry Pi Pico Arduino Core <https://github.com/earlephilhower/arduino-pico>`_ based on the great work of earlephilhower Earle F. Philhower, III. This port of the RP2040 uses the Raspberry Pi Pico SDK and a custom GCC 10.3/Newlib 4.0 toolchain, the same as earlephilhower `version 2.6.4 <https://github.com/earlephilhower/arduino-pico/releases/tag/2.6.4>`_.
 
-Documentation
--------------
+
+
 
 See `https://github.com/UNIT-Electronics/DualMCU <https://github.com/UNIT-Electronics/DualMCU>`_ along with the examples for more detailed usage information.
 
 Supported Boards
-----------------
+~~~~~~~~~~~~~~~~
 
 * DualMCU RP2040
 * Raspberry Pi Pico
 * Raspberry Pi Pico W
 * Generic (configurable flash, I/O pins)
 
-Installing via Arduino Boards Manager
--------------------------------------
+Installing via Arduino Boards Manager 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Open up the Arduino IDE and go to File->Preferences.
 
 In the dialog that pops up, enter the following URL in the "Additional Boards Manager URLs" field:
 
-    https://raw.githubusercontent.com/UNIT-Electronics/Uelectronics-RP2040-Arduino-Package/main/package_Uelectronics_rp2040_index.json  
+.. code-block:: none
     
+    https://github.com/UNIT-Electronics/Uelectronics-RP2040-Arduino-Package/releases/download/v1.0.0/package_Uelectronics_rp2040_index.json
 
 .. _figure_AditionalBoardsManagerURL:
 
@@ -195,7 +193,7 @@ Type "DualMCU" in the search box and select "Add":
     BoardsManager
     
 Uelectronics-ESP32-Arduino-Package
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------
 
 The Uelectronics-ESP32-Arduino package is a collection of software tools that enable users to program and control devices using the ESP32 MCU on the DualMCU and the Arduino platform. The package includes a set of libraries and tools for programming the ESP32 using the Arduino (IDE).
 
@@ -203,21 +201,23 @@ The package includes a range of sample code and examples to help users get start
     
 
 Supported Boards
-----------------
-* UNIT DualMCU ONE
+~~~~~~~~~~~~~~~~
+
 * UNIT DualMCU ESP32
 * ESP32 Dev Module
 * ESP32S3 Dev Module
 * ESP32C3 Dev Module
 * ESP32S2 Dev Module
 
-Installing via Arduino Boards Manager
+Installing via Arduino Boards Manager  
 -------------------------------------
 
 Open up the Arduino IDE and go to File->Preferences.
 
 - Stable release link: 
 
+.. code-block:: none
+    
     https://github.com/UNIT-Electronics/Uelectronics-ESP32-Arduino-Package/releases/download/v1.0.0/package_Uelectronics_ESP32_index.json
 
 

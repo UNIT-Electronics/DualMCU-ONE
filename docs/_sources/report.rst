@@ -13,6 +13,7 @@ Steps to Create an Error Report:
    Click on the "Issues" tab located in the repository menu.
 
 3. **Create a New Issue**  
+
    - Click the "New Issue" button.
    - Provide a clear and concise title for the issue.
    - Add a detailed description, including relevant information such as:

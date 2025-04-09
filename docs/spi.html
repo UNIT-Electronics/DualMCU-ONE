@@ -31,8 +31,9 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
-    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=b0471bf0" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=60269fe5" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -42,6 +43,8 @@
     <script src="_static/documentation_options.js?v=e645c8fa"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=00122899"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -130,10 +133,6 @@
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item"><div class="custom-button">
-    <a href="https://uelectronics.com/" role="button" target="_blank">
-        <i class="fa fa-house"></i> Wiki Unit
-</div></div>
         <div class="sidebar-primary-item">
 
   
@@ -171,11 +170,10 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="about.html">DualMCU ONE Development Board</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pinout.html">Pinout DualMCU ONE Board</a></li>
-<li class="toctree-l1"><a class="reference internal" href="setup.html">DualMCU Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">DualMCU ONE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinout.html">Pinout</a></li>
 <li class="toctree-l1"><a class="reference internal" href="env.html">IDE Setup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lib.html">Installing packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lib.html">Installing packages - Micropython</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gpio.html">General Purpose Input/Output (GPIO) RP2040 &amp; ESP32</a></li>
 <li class="toctree-l1"><a class="reference internal" href="adc.html">Analog to Digital Conversion</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="i2c.html">I2C (Inter-Integrated Circuit)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -403,13 +401,15 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spi-overview">SPI Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pinout-details">Pinout Details</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spi-communication-example">SPI Communication Example</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vspi-and-hspi-pin-configurations">VSPI and HSPI Pin Configurations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vspi-connections">VSPI Connections</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hspi-connections">HSPI Connections</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spi-between-esp32-rp2040">SPI between ESP32 &amp; RP2040</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sdcard-spi">SDCard SPI</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#library-micropython">Library (MicroPython)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#descriptions">Descriptions</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arduino-ide-compatibility">Arduino IDE Compatibility</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spi-arduino-ide">SPI (Arduino IDE)</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -423,37 +423,33 @@ document.write(`
                   
   <section id="spi-serial-peripheral-interface">
 <h1>SPI (Serial Peripheral Interface)<a class="headerlink" href="#spi-serial-peripheral-interface" title="Link to this heading">#</a></h1>
-<p>Explore SPI communication protocol and learn how to interface with SPI devices using the DualMCU ONE board. We’ll guide you through setting up SPI communication and interfacing with SPI devices.</p>
+<p>Explore SPI communication protocol and learn how to interface with SPI devices using the DualMCU ONE board. Well walk you through setting up SPI communication and
+communicating with SPI devices.</p>
 <section id="spi-overview">
 <h2>SPI Overview<a class="headerlink" href="#spi-overview" title="Link to this heading">#</a></h2>
-<p>SPI (Serial Peripheral Interface) is a synchronous, full-duplex, master-slave communication bus. It is widely used to connect microcontrollers to peripherals like sensors, displays, and memory devices. The DualMCU ONE board supports SPI communication, enabling you to interface with a range of SPI devices.</p>
+<p>SPI (Serial Peripheral Interface) is a synchronous, full-duplex, master-slave communication bus. It is commonly used to connect microcontrollers to peripherals such as sensors, displays, and memory devices. The DualMCU ONE development board features SPI communication capabilities, allowing you to interface with a wide range of SPI devices.</p>
 </section>
 <section id="pinout-details">
 <h2>Pinout Details<a class="headerlink" href="#pinout-details" title="Link to this heading">#</a></h2>
-<p>Below are the SPI pins for the DualMCU ONE board, including GPIO mappings for ESP32 and RP2040.</p>
+<p>In the next figure, you can see the SPI pins on the DualMCU ONE board and the corresponding GPIO pins on the ESP32 and RP2040 microcontrollers.</p>
 <figure class="align-center" id="id1">
-<span id="figura-spi-esp32"></span><a class="reference internal image-reference" href="_images/spi_esp32.png"><img alt="SPI Pinout Diagram" src="_images/spi_esp32.png" style="width: 90%;" /></a>
+<span id="figura-spi"></span><a class="reference internal image-reference" href="_images/spi_uart.png"><img alt="SPI" src="_images/spi_uart.png" style="width: 90%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 37 </span><span class="caption-text">SPI ESP32 Pinout Diagram</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 29 </span><span class="caption-text">SPI Pins</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<figure class="align-center" id="id2">
-<span id="figura-spi-rp2040"></span><img alt="SPI Pinout Diagram :width: 90%" src="_images/spi_rp2040.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 38 </span><span class="caption-text">SPI RP2040 Pinout Diagram</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<div class="pst-scrollable-table-container"><table class="table table-center" id="id3">
-<caption><span class="caption-number">Table 8 </span><span class="caption-text">SPI Pin Mappings</span><a class="headerlink" href="#id3" title="Link to this table">#</a></caption>
+<p>Below is the pinout table for the SPI connections on the DualMCU ONE, detailing the corresponding GPIO connections for both the ESP32 and RP2040 microcontrollers.</p>
+<div class="pst-scrollable-table-container"><table class="table table-center" id="id2">
+<caption><span class="caption-number">Table 8 </span><span class="caption-text">SPI Pinout</span><a class="headerlink" href="#id2" title="Link to this table">#</a></caption>
 <colgroup>
 <col style="width: 33.3%" />
 <col style="width: 33.3%" />
 <col style="width: 33.3%" />
 </colgroup>
 <thead>
-<tr class="row-odd"><th class="head"><p>Pin</p></th>
-<th class="head"><p>ESP32 GPIO</p></th>
-<th class="head"><p>RP2040 GPIO</p></th>
+<tr class="row-odd"><th class="head"><p>PIN</p></th>
+<th class="head"><p>GPIO ESP32</p></th>
+<th class="head"><p>GPIO RP2040</p></th>
 </tr>
 </thead>
 <tbody>
@@ -478,47 +474,133 @@ document.write(`
 </div>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
-<p>ESP32 and RP2040 share certain SPI pins. To avoid conflicts, use only one microcontroller at a time.</p>
+<p>ESP32 and RP2040 have conections sharing the same pins, so you recommend to use only one microcontroller at a time.</p>
+<div class="pst-scrollable-table-container"><table class="table table-center" id="id3">
+<caption><span class="caption-number">Table 9 </span><span class="caption-text">sharing pins</span><a class="headerlink" href="#id3" title="Link to this table">#</a></caption>
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>GPIO ESP32</p></th>
+<th class="head"><p>GPIO RP2040</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>13</p></td>
+</tr>
+<tr class="row-odd"><td><p>18</p></td>
+<td><p>14</p></td>
+</tr>
+<tr class="row-even"><td><p>23</p></td>
+<td><p>12</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </section>
-<section id="spi-communication-example">
-<h2>SPI Communication Example<a class="headerlink" href="#spi-communication-example" title="Link to this heading">#</a></h2>
-<p>Below is a basic example of initializing and using SPI with a Micro SD card in MicroPython:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">machine</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">dualmcu</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="c1"># Define SPI pins</span>
-<span class="n">SCK_PIN</span> <span class="o">=</span> <span class="mi">18</span>
-<span class="n">MOSI_PIN</span> <span class="o">=</span> <span class="mi">23</span>
-<span class="n">MISO_PIN</span> <span class="o">=</span> <span class="mi">19</span>
-<span class="n">CS_PIN</span> <span class="o">=</span> <span class="mi">5</span>
-
-<span class="c1"># Initialize SPI interface</span>
-<span class="n">spi</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">SPI</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">baudrate</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">polarity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sck</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="n">SCK_PIN</span><span class="p">),</span> <span class="n">mosi</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="n">MOSI_PIN</span><span class="p">),</span> <span class="n">miso</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="n">MISO_PIN</span><span class="p">))</span>
-
-<span class="c1"># Initialize SD card</span>
-<span class="n">sd</span> <span class="o">=</span> <span class="n">SDCard</span><span class="p">(</span><span class="n">spi</span><span class="p">,</span> <span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="n">CS_PIN</span><span class="p">))</span>
-
-<span class="c1"># Mount filesystem</span>
-<span class="n">os</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="s1">&#39;/sd&#39;</span><span class="p">)</span>
-
-<span class="c1"># List files on the SD card</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Files on SD card:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;/sd&#39;</span><span class="p">))</span>
-
-<span class="c1"># Unmount SD card</span>
-<span class="n">os</span><span class="o">.</span><span class="n">umount</span><span class="p">(</span><span class="s1">&#39;/sd&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="vspi-and-hspi-pin-configurations">
-<h2>VSPI and HSPI Pin Configurations<a class="headerlink" href="#vspi-and-hspi-pin-configurations" title="Link to this heading">#</a></h2>
-<section id="vspi-connections">
-<h3>VSPI Connections<a class="headerlink" href="#vspi-connections" title="Link to this heading">#</a></h3>
-<p>The following table shows the VSPI pin connections for an external Micro SD card reader:</p>
+<section id="spi-between-esp32-rp2040">
+<h2>SPI between ESP32 &amp; RP2040<a class="headerlink" href="#spi-between-esp32-rp2040" title="Link to this heading">#</a></h2>
+<p>DualMCU ONE board  was designed to be compatible with both ESP32 and RP2040 microcontrollers.  So it is possible to share information between the two microcontrollers
+using the SPI protocol. For this, we will use the following pins:</p>
 <div class="pst-scrollable-table-container"><table class="table table-center" id="id4">
-<caption><span class="caption-number">Table 9 </span><span class="caption-text">VSPI Pin Mappings</span><a class="headerlink" href="#id4" title="Link to this table">#</a></caption>
+<caption><span class="caption-number">Table 10 </span><span class="caption-text">SPI Connections</span><a class="headerlink" href="#id4" title="Link to this table">#</a></caption>
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Pin</p></th>
+<th class="head"><p>SPI RP2040</p></th>
+<th class="head"><p>Pin</p></th>
+<th class="head"><p>SPI ESP32</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SCK</p></td>
+<td><p>14</p></td>
+<td><p>SCK</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-odd"><td><p>MISO</p></td>
+<td><p>12</p></td>
+<td><p>MOSI</p></td>
+<td><p>23</p></td>
+</tr>
+<tr class="row-even"><td><p>MOSI</p></td>
+<td><p>15</p></td>
+<td><p>MISO</p></td>
+<td><p>14</p></td>
+</tr>
+<tr class="row-odd"><td><p>SS</p></td>
+<td><p>13</p></td>
+<td><p>SS</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-even"><td><p>READY</p></td>
+<td><p>7</p></td>
+<td><p>READY</p></td>
+<td><p>33</p></td>
+</tr>
+<tr class="row-odd"><td><p>RESET</p></td>
+<td><p>16</p></td>
+<td><p>RESET</p></td>
+<td><p>RST</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>The connection RST does not exist physically; therefore, it is necessary to establish an external connection.</p>
+</div>
+</section>
+<section id="sdcard-spi">
+<h2>SDCard SPI<a class="headerlink" href="#sdcard-spi" title="Link to this heading">#</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ensure that the Micro SD contain data. We recommend saving multiple files beforehand to facilitate the use.</p>
+</div>
+<figure class="align-center" id="id5">
+<span id="figura-micro-sd-card"></span><a class="reference internal image-reference" href="_images/Micro-SD-Card-Pinout.png"><img alt="Micro SD Card Pinout" src="_images/Micro-SD-Card-Pinout.png" style="width: 40%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 30 </span><span class="caption-text">Micro SD Card Pinout</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="library-micropython">
+<h3>Library (MicroPython)<a class="headerlink" href="#library-micropython" title="Link to this heading">#</a></h3>
+<p>The <cite>dualmcu.py</cite> library for MicroPython on ESP32 &amp; RP2040 is compatible with the reader and writer of the Micro SD card. The library provides a simple interface for reading and writing files on the SD card.
+The library is available on PyPi and can be installed using the Thonny IDE.</p>
+<p><strong>Installation</strong></p>
+<ol class="arabic simple">
+<li><p>Open <a class="reference external" href="https://thonny.org/">Thonny</a>.</p></li>
+<li><p>Navigate to <strong>Tools</strong> -&gt; <strong>Manage Packages</strong>.</p></li>
+<li><p>Search for <code class="docutils literal notranslate"><span class="pre">dualmcu</span></code> and click <strong>Install</strong>.</p></li>
+</ol>
+<p>for more information, Check the section</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>DualMCU ONE Library</p></li>
+</ul>
+</div></blockquote>
+<p>Alternatively, download the library from <a class="reference external" href="https://pypi.org/project/dualmcu/">dualmcu.py</a>.</p>
+<p>VSPI &amp; HSPI
+<strong>VSPI Interfacing.</strong>
+.. _figura-micro-sd-card-reader:</p>
+<figure class="align-center" id="id6">
+<a class="reference internal image-reference" href="_images/Lector-Micro-SD.jpg"><img alt="Micro SD Card reader" src="_images/Lector-Micro-SD.jpg" style="width: 40%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 31 </span><span class="caption-text">Micro SD Card external reader</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The conections are as follows:</p>
+<p>This table illustrates the connections between the SD card and the GPIO pins on the ESP32 and RP2040 microcontrollers.</p>
+<div class="pst-scrollable-table-container"><table class="table table-center" id="id7">
+<caption><span class="caption-number">Table 11 </span><span class="caption-text">VSPI Connections</span><a class="headerlink" href="#id7" title="Link to this table">#</a></caption>
 <colgroup>
 <col style="width: 14.3%" />
 <col style="width: 28.6%" />
@@ -526,10 +608,10 @@ document.write(`
 <col style="width: 28.6%" />
 </colgroup>
 <thead>
-<tr class="row-odd"><th class="head"><p>Pin</p></th>
-<th class="head"><p>Name</p></th>
-<th class="head"><p>ESP32 GPIO</p></th>
-<th class="head"><p>RP2040 GPIO</p></th>
+<tr class="row-odd"><th class="head"><p>SD Card</p></th>
+<th class="head"><p>Pin Name</p></th>
+<th class="head"><p>ESP32</p></th>
+<th class="head"><p>RP2040</p></th>
 </tr>
 </thead>
 <tbody>
@@ -542,6 +624,16 @@ document.write(`
 <td><p>MOSI</p></td>
 <td><p>23</p></td>
 <td><p>19</p></td>
+</tr>
+<tr class="row-even"><td><p>VSS</p></td>
+<td><p>GND</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>VDD</p></td>
+<td><p>3.3V</p></td>
+<td></td>
+<td></td>
 </tr>
 <tr class="row-even"><td><p>CLK</p></td>
 <td><p>SCK</p></td>
@@ -556,78 +648,121 @@ document.write(`
 </tbody>
 </table>
 </div>
-</section>
-<section id="hspi-connections">
-<h3>HSPI Connections<a class="headerlink" href="#hspi-connections" title="Link to this heading">#</a></h3>
-<p>Below are the HSPI pin connections for the ESP32 microcontroller:</p>
-<div class="pst-scrollable-table-container"><table class="table table-center" id="id5">
-<caption><span class="caption-number">Table 10 </span><span class="caption-text">HSPI Pin Mappings</span><a class="headerlink" href="#id5" title="Link to this table">#</a></caption>
+<section id="descriptions">
+<h4>Descriptions<a class="headerlink" href="#descriptions" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><ul class="simple">
+<li><p>SCK (Serial Clock)</p></li>
+<li><p>SS (Slave Select)</p></li>
+</ul>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">machine</span><span class="o">,</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">dualmcu</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">SCK_PIN</span> <span class="o">=</span> <span class="mi">18</span>
+<span class="n">MOSI_PIN</span> <span class="o">=</span> <span class="mi">23</span>
+<span class="n">MISO_PIN</span> <span class="o">=</span> <span class="mi">19</span>
+<span class="n">CS_PIN</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="n">spi</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">SPI</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">baudrate</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">polarity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sck</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="n">SCK_PIN</span><span class="p">),</span> <span class="n">mosi</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="n">MOSI_PIN</span><span class="p">),</span> <span class="n">miso</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="n">MISO_PIN</span><span class="p">))</span>
+<span class="n">spi</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<span class="n">sd</span> <span class="o">=</span> <span class="n">SDCard</span><span class="p">(</span><span class="n">spi</span><span class="p">,</span> <span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="n">CS_PIN</span><span class="p">))</span>
+<span class="n">os</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="s1">&#39;/sd&#39;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;files ...&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;/sd&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>HSPI Interfacing.</strong></p>
+<p>This table details the connections between the SD card and the ESP32 microcontroller.</p>
+<div class="pst-scrollable-table-container"><table class="table table-center" id="id8">
+<caption><span class="caption-number">Table 12 </span><span class="caption-text">HSPI Connections</span><a class="headerlink" href="#id8" title="Link to this table">#</a></caption>
 <colgroup>
 <col style="width: 20.0%" />
 <col style="width: 40.0%" />
 <col style="width: 40.0%" />
 </colgroup>
 <thead>
-<tr class="row-odd"><th class="head"><p>Pin</p></th>
-<th class="head"><p>Name</p></th>
-<th class="head"><p>ESP32 GPIO</p></th>
+<tr class="row-odd"><th class="head"><p>SD Card</p></th>
+<th class="head"><p>ESP32</p></th>
+<th class="head"><p>PIN</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>D3</p></td>
-<td><p>SS</p></td>
+<tr class="row-even"><td><p>D2</p></td>
+<td></td>
+<td><p>12</p></td>
+</tr>
+<tr class="row-odd"><td><p>D3</p></td>
+<td><p>SS (Slave Select)</p></td>
 <td><p>13</p></td>
 </tr>
-<tr class="row-odd"><td><p>CMD</p></td>
+<tr class="row-even"><td><p>CMD</p></td>
 <td><p>MOSI</p></td>
 <td><p>15</p></td>
 </tr>
-<tr class="row-even"><td><p>CLK</p></td>
-<td><p>SCK</p></td>
+<tr class="row-odd"><td><p>VSS</p></td>
+<td><p>GND</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>VDD</p></td>
+<td><p>3.3V</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>CLK</p></td>
+<td><p>SCK (Serial Clock)</p></td>
 <td><p>14</p></td>
+</tr>
+<tr class="row-even"><td><p>VSS</p></td>
+<td><p>GND</p></td>
+<td></td>
 </tr>
 <tr class="row-odd"><td><p>D0</p></td>
 <td><p>MISO</p></td>
 <td><p>2</p></td>
 </tr>
+<tr class="row-even"><td><p>D1</p></td>
+<td></td>
+<td><p>4</p></td>
+</tr>
 </tbody>
 </table>
 </div>
-<div class="admonition caution">
-<p class="admonition-title">Caution</p>
-<p>Ensure to use the correct SPI pins and avoid conflicts when sharing pins between peripherals.</p>
+<p>For the test , we will utilize an ESP32 WROM-32E and a  SanDisk Micros Ultra card with a capacity of 32 GB.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">machine</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">dualmcu</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># Initialize SPI interface for the SD card</span>
+<span class="n">spi</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">SPI</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">baudrate</span><span class="o">=</span><span class="mi">1000000</span><span class="p">,</span> <span class="n">polarity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sck</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="mi">14</span><span class="p">),</span> <span class="n">mosi</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span> <span class="n">miso</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># Initialize the SD card</span>
+<span class="n">sd</span> <span class="o">=</span> <span class="n">SDCard</span><span class="p">(</span><span class="n">spi</span><span class="p">,</span> <span class="n">machine</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="mi">13</span><span class="p">))</span>
+
+<span class="c1"># Mount the filesystem</span>
+<span class="n">vfs</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">VfsFat</span><span class="p">(</span><span class="n">sd</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="n">vfs</span><span class="p">,</span> <span class="s2">&quot;/sd&quot;</span><span class="p">)</span>
+
+<span class="c1"># List files in the root of the SD card</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Files in the root of the SD card:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;/sd&quot;</span><span class="p">))</span>
+
+
+<span class="n">os</span><span class="o">.</span><span class="n">umount</span><span class="p">(</span><span class="s2">&quot;/sd&quot;</span><span class="p">)</span>
+</pre></div>
 </div>
 </section>
 </section>
-<section id="arduino-ide-compatibility">
-<h2>Arduino IDE Compatibility<a class="headerlink" href="#arduino-ide-compatibility" title="Link to this heading">#</a></h2>
-<p>The Arduino IDE supports SPI communication and allows interfacing with Micro SD cards. Below is an example of using VSPI in Arduino:</p>
+<section id="spi-arduino-ide">
+<h3>SPI (Arduino IDE)<a class="headerlink" href="#spi-arduino-ide" title="Link to this heading">#</a></h3>
+<p>Arduino IDE is compatible for reader and writer of the Micro SD card. The library provides a simple interface for reading and writing files on the SD card.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">VSPI</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;SPI.h&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;SD.h&gt;</span>
-
-<span class="cp">#define CS_PIN 5  </span><span class="c1">// Chip Select pin for VSPI</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">SD</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="n">CS_PIN</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Initialization failed!&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="k">return</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Initialization done.&quot;</span><span class="p">);</span>
-<span class="w">  </span><span class="n">File</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SD</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">);</span>
-<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">File</span><span class="w"> </span><span class="n">entry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="n">openNextFile</span><span class="p">();</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">entry</span><span class="p">)</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
-<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">entry</span><span class="p">.</span><span class="n">name</span><span class="p">());</span>
-<span class="w">    </span><span class="n">entry</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">VSPI</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div></div>
+</section>
 </section>
 </section>
 
@@ -678,13 +813,15 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spi-overview">SPI Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pinout-details">Pinout Details</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spi-communication-example">SPI Communication Example</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vspi-and-hspi-pin-configurations">VSPI and HSPI Pin Configurations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vspi-connections">VSPI Connections</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hspi-connections">HSPI Connections</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spi-between-esp32-rp2040">SPI between ESP32 &amp; RP2040</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sdcard-spi">SDCard SPI</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#library-micropython">Library (MicroPython)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#descriptions">Descriptions</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arduino-ide-compatibility">Arduino IDE Compatibility</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spi-arduino-ide">SPI (Arduino IDE)</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
@@ -709,7 +846,7 @@ By Cesar Bautista
 
   <p class="copyright">
     
-      © Copyright 2025, Unit Electronics.
+      © Copyright 2024, Unit Electronics.
       <br/>
     
   </p>

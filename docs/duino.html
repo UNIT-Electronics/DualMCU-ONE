@@ -31,8 +31,9 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
-    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=b0471bf0" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=60269fe5" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -42,6 +43,8 @@
     <script src="_static/documentation_options.js?v=e645c8fa"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=00122899"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -129,10 +132,6 @@
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item"><div class="custom-button">
-    <a href="https://uelectronics.com/" role="button" target="_blank">
-        <i class="fa fa-house"></i> Wiki Unit
-</div></div>
         <div class="sidebar-primary-item">
 
   
@@ -170,11 +169,10 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="about.html">DualMCU ONE Development Board</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pinout.html">Pinout DualMCU ONE Board</a></li>
-<li class="toctree-l1"><a class="reference internal" href="setup.html">DualMCU Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">DualMCU ONE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinout.html">Pinout</a></li>
 <li class="toctree-l1"><a class="reference internal" href="env.html">IDE Setup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lib.html">Installing packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lib.html">Installing packages - Micropython</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gpio.html">General Purpose Input/Output (GPIO) RP2040 &amp; ESP32</a></li>
 <li class="toctree-l1"><a class="reference internal" href="adc.html">Analog to Digital Conversion</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="i2c.html">I2C (Inter-Integrated Circuit)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -418,10 +416,15 @@ document.write(`
 the same pinout as the Arduino UNO Rev3, making it easy to use with existing shields.
 The board also features a USB-C connector for power and data, a microSD card slot, and a dual-core architecture
 with an RP2040 and an ESP32 microcontrollers.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The DualMCU ONE board is designed to be compatible with Arduino shields, but not all shields may work perfectly due to differences in voltage levels and pin configurations.
+Always check the specifications of the shield you are using to ensure compatibility.</p>
+</div>
 <figure class="align-center" id="id1">
 <span id="figure-dualmcu-one-n"></span><a class="reference internal image-reference" href="_images/dualmcu_one.png"><img alt="DualMCU ONE" src="_images/dualmcu_one.png" style="width: 60%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 44 </span><span class="caption-text">DualMCU ONE board</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 36 </span><span class="caption-text">DualMCU ONE board</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="multi-purpose-shield-for-dualmcu-one">
@@ -429,7 +432,7 @@ with an RP2040 and an ESP32 microcontrollers.</p>
 <figure class="align-center" id="id2">
 <span id="figure-multi-purpose-shield"></span><a class="reference internal image-reference" href="_images/shields.png"><img alt="Multi-purpose Shield" src="_images/shields.png" style="width: 60%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 45 </span><span class="caption-text">Multi-purpose Shield</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 37 </span><span class="caption-text">Multi-purpose Shield</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The Multi-purpose Shield is a versatile accessory for the DualMCU ONE board. It features a variety of sensors and components, including:</p>
@@ -571,7 +574,7 @@ By Cesar Bautista
 
   <p class="copyright">
     
-      © Copyright 2025, Unit Electronics.
+      © Copyright 2024, Unit Electronics.
       <br/>
     
   </p>

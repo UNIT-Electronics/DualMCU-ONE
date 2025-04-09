@@ -1,9 +1,13 @@
-DualMCU ONE Development Board
+DualMCU ONE 
 ==============================
 
 Introduction
 ------------
 The DualMCU ONE development board is a versatile platform that combines the power of two microcontrollers: the RP2040 and the ESP32. This combination allows developers to take advantage of the unique features and capabilities of each microcontroller, making it ideal for a wide range of applications.
+
+.. warning::
+  The DualMCU-ONE operates with 3.3V logic levels instead of the Arduino Uno’s typical 5V.
+  Make sure any shield or peripheral connected is compatible with 3.3V logic to avoid potential damage.
 
 .. _figure_dualmcu_one2:
 .. figure:: /_static/product/IMG_3145.jpg
@@ -87,28 +91,28 @@ Distribution of digital pins D0 to D7
      - GPIO RP2040
    * - D0
      - RX0
-     - 1
+     - GPIO1
    * - D1 
      - TX0
-     - 0
+     - GPIO0
    * - D2 
      - RX1
-     - 5
+     - GPIO5
    * - D3 
      - TX1
-     - 4
+     - GPIO4
    * - D4 
      - *
-     - 9
+     - GPIO9
    * - D5
      - *
-     - 11
+     - GPIO11
    * - D6
      - *
-     - 8
+     - GPIO8
    * - D7
      - *
-     - 10
+     - GPIO10
 
 Distribution of digital pins D8 to D13
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -131,28 +135,28 @@ Distribution of digital pins D8 to D13
      - GPIO RP2040
    * - D8
      - *
-     - 2
+     - GPIO2
    * - D9
      - *
-     - 3
+     - GPIO3
    * - D10
      - *
-     - 17
+     - GPIO17
    * - D11
      - *
-     - 19
+     - GPIO19
    * - D12
      - *
-     - 16
+     - GPIO16
    * - D13
      - *
-     - 18
+     - GPIO18
    * - SDA0
      - *
-     - 20
+     - GPIO20
    * - SCL0
      - *
-     - 21
+     - GPIO21
    
 
 RP2040 Microcontroller

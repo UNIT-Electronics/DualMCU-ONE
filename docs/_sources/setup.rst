@@ -1,5 +1,5 @@
 DualMCU Setup
-=========================
+===================
 
 The environment setup is the first step to start working with the DualMCU ONE board.
 The following steps will guide you through the setup process.

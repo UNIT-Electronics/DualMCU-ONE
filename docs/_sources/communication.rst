@@ -8,22 +8,61 @@ Wi-Fi
 -----
 Learn how to set up and use Wi-Fi communication on the DualMCU ONE board.
 
-.. code-block:: python
+.. tabs::
 
-    import machine
-    import network
+    .. tab::
 
-    wlan = network.WLAN(network.STA_IF)
-    wlan.active(True)
-    wlan.connect('your-ssid', 'your-password')
+        .. code-block:: python
 
-    while not wlan.isconnected():
-        pass
+            import machine
+            import network
 
-    print('Connected to Wi-Fi')
+            wlan = network.WLAN(network.STA_IF)
+            wlan.active(True)
+            wlan.connect('your-ssid', 'your-password')
 
-    # Check the IP address
-    print(wlan.ifconfig())
+            while not wlan.isconnected():
+                pass
+
+            print('Connected to Wi-Fi')
+
+            # Check the IP address
+            print(wlan.ifconfig())
+    .. tab::
+
+        .. code-block:: c++
+
+            #include <WiFi.h>
+
+            const char* ssid = "TU_SSID";
+            const char* password = "TU_PASSWORD";
+
+            void setup() {
+            Serial.begin(115200);
+            delay(100);
+
+            Serial.print("Conectando a ");
+            Serial.println(ssid);
+
+            WiFi.begin(ssid, password);
+
+            while (WiFi.status() != WL_CONNECTED) {
+                delay(500);
+                Serial.print(".");
+            }
+
+            Serial.println("\nConectado a la red Wi-Fi");
+            Serial.print(" IP: ");
+            Serial.println(WiFi.localIP());
+
+            Serial.print(" MAC: ");
+            Serial.println(WiFi.macAddress());
+            }
+
+            void loop() {
+            // No se necesita hacer nada más en loop
+            }
+
 
 Scan Wi-Fi Networks
 ~~~~~~~~~~~~~~~~~~~~
@@ -99,8 +138,8 @@ Scan for available Wi-Fi networks and display the results on an OLED display.
    :align: center
    :alt: scan Wi-Fi networks
    :width: 60%
-   
-   Scan Wi-Fi networks
+
+    Scan Wi-Fi networks
 
 
     
@@ -109,57 +148,103 @@ Bluetooth
 
 Explore Bluetooth communication capabilities and learn how to connect to Bluetooth devices.
 
+.. tabs::
+    .. tab::
+        .. code-block:: python 
 
-.. code-block:: python 
+            import bluetooth
+            import time
 
-    import bluetooth
-    import time
+            # Initialize Bluetooth
+            ble = bluetooth.BLE()
+            ble.active(True)
 
-    # Initialize Bluetooth
-    ble = bluetooth.BLE()
-    ble.active(True)
+            # Helper function to convert memoryview to MAC address string
+            def format_mac(addr):
+                return ':'.join('{:02x}'.format(b) for b in addr)
 
-    # Helper function to convert memoryview to MAC address string
-    def format_mac(addr):
-        return ':'.join('{:02x}'.format(b) for b in addr)
+            # Helper function to parse device name from advertising data
+            def decode_name(data):
+                i = 0
+                length = len(data)
+                while i < length:
+                    ad_length = data[i]
+                    ad_type = data[i + 1]
+                    if ad_type == 0x09:  # Complete Local Name
+                        return str(data[i + 2:i + 1 + ad_length], 'utf-8')
+                    elif ad_type == 0x08:  # Shortened Local Name
+                        return str(data[i + 2:i + 1 + ad_length], 'utf-8')
+                    i += ad_length + 1
+                return None
 
-    # Helper function to parse device name from advertising data
-    def decode_name(data):
-        i = 0
-        length = len(data)
-        while i < length:
-            ad_length = data[i]
-            ad_type = data[i + 1]
-            if ad_type == 0x09:  # Complete Local Name
-                return str(data[i + 2:i + 1 + ad_length], 'utf-8')
-            elif ad_type == 0x08:  # Shortened Local Name
-                return str(data[i + 2:i + 1 + ad_length], 'utf-8')
-            i += ad_length + 1
-        return None
+            # Callback function to handle advertising reports
+            def bt_irq(event, data):
+                if event == 5:  # event 5 is for advertising reports
+                    addr_type, addr, adv_type, rssi, adv_data = data
+                    mac_addr = format_mac(addr)
+                    device_name = decode_name(adv_data)
+                    if device_name:
+                        print(f"Device found: {mac_addr} (RSSI: {rssi}) Name: {device_name}")
+                    else:
+                        print(f"Device found: {mac_addr} (RSSI: {rssi}) Name: Unknown")
+            #             pass
 
-    # Callback function to handle advertising reports
-    def bt_irq(event, data):
-        if event == 5:  # event 5 is for advertising reports
-            addr_type, addr, adv_type, rssi, adv_data = data
-            mac_addr = format_mac(addr)
-            device_name = decode_name(adv_data)
-            if device_name:
-                print(f"Device found: {mac_addr} (RSSI: {rssi}) Name: {device_name}")
-            else:
-                print(f"Device found: {mac_addr} (RSSI: {rssi}) Name: Unknown")
-    #             pass
+            # Set the callback function
+            ble.irq(bt_irq)
 
-    # Set the callback function
-    ble.irq(bt_irq)
+            # Start active scanning
+            ble.gap_scan(10000, 30000, 30000, True)  # Active scan for 10 seconds with interval and window of 30ms
 
-    # Start active scanning
-    ble.gap_scan(10000, 30000, 30000, True)  # Active scan for 10 seconds with interval and window of 30ms
+            # Keep the program running to allow the callback to be processed
+            while True:
+                time.sleep(1)
+    .. tab::
+        .. code-block:: c++
 
-    # Keep the program running to allow the callback to be processed
-    while True:
-        time.sleep(1)
+            #include "BluetoothSerial.h"
 
+            BluetoothSerial SerialBT;
 
+            void setup() {
+            Serial.begin(115200);
+            Serial.println(" Starting Bluetooth device scan...");
+
+            if (!btStart()) {
+                Serial.println(" Could not start Bluetooth");
+                return;
+            }
+
+            // Scan for classic Bluetooth devices
+            int8_t numDevices = SerialBT.discoverAsync([](BTAdvertisedDevice* device) {
+                static int found = 0;
+
+                if (found < 10) {
+                Serial.print(" Name: ");
+                Serial.println(device->getName().c_str());
+
+                Serial.print(" MAC Address: ");
+                Serial.println(device->getAddress().toString().c_str());
+
+                Serial.println("---------------------------");
+                found++;
+                }
+
+                // Cancel scan if 10 devices are already detected
+                if (found >= 10) {
+                SerialBT.cancelDiscover();
+                }
+            });
+
+            if (numDevices == 0) {
+                Serial.println(" No devices found.");
+            } else {
+                Serial.println("Scan in progress...");
+            }
+            }
+
+            void loop() {
+            // Nothing in loop
+            }
 
 Web Server - MicroPython
 ========================

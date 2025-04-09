@@ -1,4 +1,4 @@
-Pinout DualMCU ONE Board
+Pinout 
 =========================
 
 The section below provides an overview of the pinout for the DualMCU ONE development board. The pinout details the GPIO connections for both the ESP32 and RP2040 microcontrollers. 

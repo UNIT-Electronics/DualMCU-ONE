@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>DualMCU ONE Development Board &#8212; DualMCU ONE Development Board 0.0.1 documentation</title>
+    <title>DualMCU ONE &#8212; DualMCU ONE Development Board 0.0.1 documentation</title>
   
   
   
@@ -31,8 +31,9 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
-    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=b0471bf0" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=60269fe5" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -42,6 +43,8 @@
     <script src="_static/documentation_options.js?v=e645c8fa"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=00122899"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -53,7 +56,7 @@
     <link rel="author" title="About these documents" href="#" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Pinout DualMCU ONE Board" href="pinout.html" />
+    <link rel="next" title="Pinout" href="pinout.html" />
     <link rel="prev" title="DualMCU ONE Getting Started" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -129,10 +132,6 @@
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item"><div class="custom-button">
-    <a href="https://uelectronics.com/" role="button" target="_blank">
-        <i class="fa fa-house"></i> Wiki Unit
-</div></div>
         <div class="sidebar-primary-item">
 
   
@@ -170,11 +169,10 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">DualMCU ONE Development Board</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pinout.html">Pinout DualMCU ONE Board</a></li>
-<li class="toctree-l1"><a class="reference internal" href="setup.html">DualMCU Setup</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">DualMCU ONE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinout.html">Pinout</a></li>
 <li class="toctree-l1"><a class="reference internal" href="env.html">IDE Setup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lib.html">Installing packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lib.html">Installing packages - Micropython</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gpio.html">General Purpose Input/Output (GPIO) RP2040 &amp; ESP32</a></li>
 <li class="toctree-l1"><a class="reference internal" href="adc.html">Analog to Digital Conversion</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="i2c.html">I2C (Inter-Integrated Circuit)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -390,7 +388,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>DualMCU ONE Development Board</h1>
+    <h1>DualMCU ONE</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -435,11 +433,16 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="dualmcu-one-development-board">
-<h1>DualMCU ONE Development Board<a class="headerlink" href="#dualmcu-one-development-board" title="Link to this heading">#</a></h1>
+  <section id="dualmcu-one">
+<h1>DualMCU ONE<a class="headerlink" href="#dualmcu-one" title="Link to this heading">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>The DualMCU ONE development board is a versatile platform that combines the power of two microcontrollers: the RP2040 and the ESP32. This combination allows developers to take advantage of the unique features and capabilities of each microcontroller, making it ideal for a wide range of applications.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The DualMCU-ONE operates with 3.3V logic levels instead of the Arduino Uno’s typical 5V.
+Make sure any shield or peripheral connected is compatible with 3.3V logic to avoid potential damage.</p>
+</div>
 <figure class="align-center" id="id1">
 <span id="figure-dualmcu-one2"></span><a class="reference internal image-reference" href="_images/IMG_3145.jpg"><img alt="DualMCU ONE" src="_images/IMG_3145.jpg" style="width: 70%;" /></a>
 <figcaption>
@@ -527,47 +530,47 @@ This mapping allows you to easily identify the pins you need to use for your pro
 <tbody>
 <tr class="row-even"><td><p>D0</p></td>
 <td><p>RX0</p></td>
-<td><p>1</p></td>
+<td><p>GPIO1</p></td>
 </tr>
 <tr class="row-odd"><td><p>D1</p></td>
 <td><p>TX0</p></td>
-<td><p>0</p></td>
+<td><p>GPIO0</p></td>
 </tr>
 <tr class="row-even"><td><p>D2</p></td>
 <td><p>RX1</p></td>
-<td><p>5</p></td>
+<td><p>GPIO5</p></td>
 </tr>
 <tr class="row-odd"><td><p>D3</p></td>
 <td><p>TX1</p></td>
-<td><p>4</p></td>
+<td><p>GPIO4</p></td>
 </tr>
 <tr class="row-even"><td><p>D4</p></td>
 <td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><p>9</p></td>
+<td><p>GPIO9</p></td>
 </tr>
 <tr class="row-odd"><td><p>D5</p></td>
 <td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><p>11</p></td>
+<td><p>GPIO11</p></td>
 </tr>
 <tr class="row-even"><td><p>D6</p></td>
 <td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><p>8</p></td>
+<td><p>GPIO8</p></td>
 </tr>
 <tr class="row-odd"><td><p>D7</p></td>
 <td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><p>10</p></td>
+<td><p>GPIO10</p></td>
 </tr>
 </tbody>
 </table>
@@ -600,56 +603,56 @@ This mapping allows you to easily identify the pins you need to use for your pro
 <li></li>
 </ul>
 </td>
-<td><p>2</p></td>
+<td><p>GPIO2</p></td>
 </tr>
 <tr class="row-odd"><td><p>D9</p></td>
 <td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><p>3</p></td>
+<td><p>GPIO3</p></td>
 </tr>
 <tr class="row-even"><td><p>D10</p></td>
 <td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><p>17</p></td>
+<td><p>GPIO17</p></td>
 </tr>
 <tr class="row-odd"><td><p>D11</p></td>
 <td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><p>19</p></td>
+<td><p>GPIO19</p></td>
 </tr>
 <tr class="row-even"><td><p>D12</p></td>
 <td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><p>16</p></td>
+<td><p>GPIO16</p></td>
 </tr>
 <tr class="row-odd"><td><p>D13</p></td>
 <td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><p>18</p></td>
+<td><p>GPIO18</p></td>
 </tr>
 <tr class="row-even"><td><p>SDA0</p></td>
 <td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><p>20</p></td>
+<td><p>GPIO20</p></td>
 </tr>
 <tr class="row-odd"><td><p>SCL0</p></td>
 <td><ul class="simple">
 <li></li>
 </ul>
 </td>
-<td><p>21</p></td>
+<td><p>GPIO21</p></td>
 </tr>
 </tbody>
 </table>
@@ -803,7 +806,7 @@ This mapping allows you to easily identify the pins you need to use for your pro
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Pinout DualMCU ONE Board</p>
+        <p class="prev-next-title">Pinout</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -871,7 +874,7 @@ By Cesar Bautista
 
   <p class="copyright">
     
-      © Copyright 2025, Unit Electronics.
+      © Copyright 2024, Unit Electronics.
       <br/>
     
   </p>

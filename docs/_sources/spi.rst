@@ -1,46 +1,40 @@
-SPI (Serial Peripheral Interface)
-=================================
 
-Explore SPI communication protocol and learn how to interface with SPI devices using the DualMCU ONE board. We'll guide you through setting up SPI communication and interfacing with SPI devices.
+SPI (Serial Peripheral Interface)
+==================================
+
+Explore SPI communication protocol and learn how to interface with SPI devices using the DualMCU ONE board. Well walk you through setting up SPI communication and 
+communicating with SPI devices.
+
 
 SPI Overview
-------------
+----------------
 
-SPI (Serial Peripheral Interface) is a synchronous, full-duplex, master-slave communication bus. It is widely used to connect microcontrollers to peripherals like sensors, displays, and memory devices. The DualMCU ONE board supports SPI communication, enabling you to interface with a range of SPI devices.
+SPI (Serial Peripheral Interface) is a synchronous, full-duplex, master-slave communication bus. It is commonly used to connect microcontrollers to peripherals such as sensors, displays, and memory devices. The DualMCU ONE development board features SPI communication capabilities, allowing you to interface with a wide range of SPI devices.
 
 Pinout Details
---------------
+----------------
 
-Below are the SPI pins for the DualMCU ONE board, including GPIO mappings for ESP32 and RP2040.
+In the next figure, you can see the SPI pins on the DualMCU ONE board and the corresponding GPIO pins on the ESP32 and RP2040 microcontrollers.
 
-.. _figura-spi-esp32:
+.. _figura-spi:
 
-.. figure:: /_static/product/spi_esp32.png
+.. figure:: /_static/product/spi_uart.png
    :align: center
-   :alt: SPI Pinout Diagram
+   :alt: SPI
    :width: 90%
 
-   SPI ESP32 Pinout Diagram
+   SPI Pins
 
+Below is the pinout table for the SPI connections on the DualMCU ONE, detailing the corresponding GPIO connections for both the ESP32 and RP2040 microcontrollers.
 
-
-.. _figura-spi-rp2040:
-
-.. figure:: /_static/product/spi_rp2040.png
-   :align: center
-   :alt: SPI Pinout Diagram
-    :width: 90%
-
-   SPI RP2040 Pinout Diagram
-
-.. list-table:: SPI Pin Mappings
+.. list-table:: SPI Pinout
    :widths: 20 20 20
    :header-rows: 1
    :align: center
 
-   * - Pin
-     - ESP32 GPIO
-     - RP2040 GPIO
+   * - PIN
+     - GPIO ESP32
+     - GPIO RP2040
    * - SCK
      - 18
      - 18
@@ -55,135 +49,268 @@ Below are the SPI pins for the DualMCU ONE board, including GPIO mappings for ES
      - 17
 
 .. caution::
-   ESP32 and RP2040 share certain SPI pins. To avoid conflicts, use only one microcontroller at a time.
+   ESP32 and RP2040 have conections sharing the same pins, so you recommend to use only one microcontroller at a time.
+   
+   .. list-table:: sharing pins
+      :widths: 20 20 
+      :header-rows: 1
+      :align: center
 
-SPI Communication Example
---------------------------
+      * - GPIO ESP32
+        - GPIO RP2040
+      * - 5
+        - 13
+      * - 18
+        - 14
+      * - 23
+        - 12
 
-Below is a basic example of initializing and using SPI with a Micro SD card in MicroPython:
+SPI between ESP32 & RP2040
+---------------------------------------
+
+DualMCU ONE board  was designed to be compatible with both ESP32 and RP2040 microcontrollers.  So it is possible to share information between the two microcontrollers 
+using the SPI protocol. For this, we will use the following pins:
+
+.. list-table:: SPI Connections
+   :widths: 25 25 25 25
+   :header-rows: 1
+   :align: center
+
+   * - Pin 
+     - SPI RP2040
+     - Pin 
+     - SPI ESP32
+   * - SCK
+     - 14
+     - SCK
+     - 18
+   * - MISO 
+     - 12
+     - MOSI
+     - 23
+   * - MOSI 
+     - 15
+     - MISO
+     - 14
+   * - SS
+     - 13
+     - SS
+     - 5
+   * - READY
+     - 7
+     - READY
+     - 33
+   * - RESET
+     - 16
+     - RESET
+     - RST 
+
+
+.. caution::
+  The connection RST does not exist physically; therefore, it is necessary to establish an external connection. 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+SDCard SPI
+------------
+
+.. warning::
+
+    Ensure that the Micro SD contain data. We recommend saving multiple files beforehand to facilitate the use.
+
+
+.. _figura-micro-sd-card:
+
+.. figure:: /_static/Micro-SD-Card-Pinout.png
+   :align: center
+   :alt: Micro SD Card Pinout
+   :width: 40%
+
+   Micro SD Card Pinout
+
+Library (MicroPython)
+~~~~~~~~~~~~~~~~~~~~~~
+
+
+The `dualmcu.py` library for MicroPython on ESP32 & RP2040 is compatible with the reader and writer of the Micro SD card. The library provides a simple interface for reading and writing files on the SD card. 
+The library is available on PyPi and can be installed using the Thonny IDE.
+
+**Installation**
+
+1. Open `Thonny <https://thonny.org/>`_.
+2. Navigate to **Tools** -> **Manage Packages**.
+3. Search for ``dualmcu`` and click **Install**.
+
+for more information, Check the section 
+
+   - DualMCU ONE Library
+
+Alternatively, download the library from `dualmcu.py <https://pypi.org/project/dualmcu/>`_.
+
+
+VSPI & HSPI
+**VSPI Interfacing.**
+.. _figura-micro-sd-card-reader:
+
+.. figure:: /_static/Lector-Micro-SD.jpg
+  :align: center
+  :alt: Micro SD Card reader
+  :width: 40%
+
+  Micro SD Card external reader
+
+The conections are as follows:
+
+This table illustrates the connections between the SD card and the GPIO pins on the ESP32 and RP2040 microcontrollers.
+
+.. list-table:: VSPI Connections
+  :widths: 10 20 20 20
+  :header-rows: 1
+  :align: center
+
+  * - SD Card
+    - Pin Name
+    - ESP32
+    - RP2040
+  * - D3
+    - SS
+    - 5
+    - 17
+  * - CMD
+    - MOSI
+    - 23
+    - 19
+  * - VSS
+    - GND
+    - 
+    - 
+  * - VDD
+    - 3.3V
+    - 
+    - 
+  * - CLK
+    - SCK
+    - 18
+    - 18
+  * - D0
+    - MISO
+    - 19
+    - 16
+
+Descriptions
+"""""""""""""
+    - SCK (Serial Clock)
+    - SS (Slave Select)
+
 
 .. code-block:: python
 
-   import machine
-   import os
-   from dualmcu import *
+  import machine, os
+  from dualmcu import *
 
-   # Define SPI pins
-   SCK_PIN = 18
-   MOSI_PIN = 23
-   MISO_PIN = 19
-   CS_PIN = 5
+  SCK_PIN = 18
+  MOSI_PIN = 23
+  MISO_PIN = 19
+  CS_PIN = 5
 
-   # Initialize SPI interface
-   spi = machine.SPI(1, baudrate=100000, polarity=0, phase=0, sck=machine.Pin(SCK_PIN), mosi=machine.Pin(MOSI_PIN), miso=machine.Pin(MISO_PIN))
+  spi = machine.SPI(1, baudrate=100000, polarity=0, phase=0, sck=machine.Pin(SCK_PIN), mosi=machine.Pin(MOSI_PIN), miso=machine.Pin(MISO_PIN))
+  spi.init()
+  sd = SDCard(spi, machine.Pin(CS_PIN))
+  os.mount(sd, '/sd')
+  os.listdir('/')
 
-   # Initialize SD card
-   sd = SDCard(spi, machine.Pin(CS_PIN))
+  print("files ...")
+  print(os.listdir("/sd"))
 
-   # Mount filesystem
-   os.mount(sd, '/sd')
 
-   # List files on the SD card
-   print("Files on SD card:")
-   print(os.listdir('/sd'))
+**HSPI Interfacing.**
 
-   # Unmount SD card
-   os.umount('/sd')
+This table details the connections between the SD card and the ESP32 microcontroller.
 
-VSPI and HSPI Pin Configurations
---------------------------------
+.. list-table:: HSPI Connections
+  :widths: 10 20 20
+  :header-rows: 1
+  :align: center
 
-VSPI Connections
-~~~~~~~~~~~~~~~~
 
-The following table shows the VSPI pin connections for an external Micro SD card reader:
+  * - SD Card
+    - ESP32
+    - PIN
+  * - D2
+    - 
+    - 12
+  * - D3
+    - SS (Slave Select)
+    - 13
+  * - CMD
+    - MOSI
+    - 15
+  * - VSS
+    - GND
+    -
+  * - VDD
+    - 3.3V
+    - 
+  * - CLK
+    - SCK (Serial Clock)
+    - 14
+  * - VSS
+    - GND
+    - 
+  * - D0
+    - MISO
+    - 2
+  * - D1
+    - 
+    - 4
 
-.. list-table:: VSPI Pin Mappings
-   :widths: 10 20 20 20
-   :header-rows: 1
-   :align: center
 
-   * - Pin
-     - Name
-     - ESP32 GPIO
-     - RP2040 GPIO
-   * - D3
-     - SS
-     - 5
-     - 17
-   * - CMD
-     - MOSI
-     - 23
-     - 19
-   * - CLK
-     - SCK
-     - 18
-     - 18
-   * - D0
-     - MISO
-     - 19
-     - 16
 
-HSPI Connections
-~~~~~~~~~~~~~~~~
+For the test , we will utilize an ESP32 WROM-32E and a  SanDisk Micros Ultra card with a capacity of 32 GB. 
 
-Below are the HSPI pin connections for the ESP32 microcontroller:
+.. code-block:: python
 
-.. list-table:: HSPI Pin Mappings
-   :widths: 10 20 20
-   :header-rows: 1
-   :align: center
+  import machine
+  import os
+  from dualmcu import *
 
-   * - Pin
-     - Name
-     - ESP32 GPIO
-   * - D3
-     - SS
-     - 13
-   * - CMD
-     - MOSI
-     - 15
-   * - CLK
-     - SCK
-     - 14
-   * - D0
-     - MISO
-     - 2
+  # Initialize SPI interface for the SD card
+  spi = machine.SPI(2, baudrate=1000000, polarity=0, phase=0, sck=machine.Pin(14), mosi=machine.Pin(15), miso=machine.Pin(2))
 
-.. caution::
-   Ensure to use the correct SPI pins and avoid conflicts when sharing pins between peripherals.
+  # Initialize the SD card
+  sd = SDCard(spi, machine.Pin(13))
 
-Arduino IDE Compatibility
--------------------------
+  # Mount the filesystem
+  vfs = os.VfsFat(sd)
+  os.mount(vfs, "/sd")
 
-The Arduino IDE supports SPI communication and allows interfacing with Micro SD cards. Below is an example of using VSPI in Arduino:
+  # List files in the root of the SD card
+  print("Files in the root of the SD card:")
+  print(os.listdir("/sd"))
+
+
+  os.umount("/sd") 
+
+
+SPI (Arduino IDE)
+~~~~~~~~~~~~~~~~~~
+
+Arduino IDE is compatible for reader and writer of the Micro SD card. The library provides a simple interface for reading and writing files on the SD card.
+
 
 .. tabs::
 
-   .. tab:: VSPI
+  .. tab:: VSPI 
 
-      .. code-block:: cpp
-
-         #include <SPI.h>
-         #include <SD.h>
-
-         #define CS_PIN 5  // Chip Select pin for VSPI
-
-         void setup() {
-           Serial.begin(115200);
-           if (!SD.begin(CS_PIN)) {
-             Serial.println("Initialization failed!");
-             return;
-           }
-           Serial.println("Initialization done.");
-           File root = SD.open("/");
-           while (true) {
-             File entry = root.openNextFile();
-             if (!entry) break;
-             Serial.println(entry.name());
-             entry.close();
-           }
-         }
-
-         void loop() {}
-
+    .. code-block::
+      

@@ -31,8 +31,9 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
-    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=b0471bf0" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=60269fe5" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -42,10 +43,13 @@
     <script src="_static/documentation_options.js?v=e645c8fa"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=00122899"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/tabs.js?v=3030b3cb"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
@@ -129,10 +133,6 @@
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item"><div class="custom-button">
-    <a href="https://uelectronics.com/" role="button" target="_blank">
-        <i class="fa fa-house"></i> Wiki Unit
-</div></div>
         <div class="sidebar-primary-item">
 
   
@@ -170,11 +170,10 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="about.html">DualMCU ONE Development Board</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pinout.html">Pinout DualMCU ONE Board</a></li>
-<li class="toctree-l1"><a class="reference internal" href="setup.html">DualMCU Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">DualMCU ONE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinout.html">Pinout</a></li>
 <li class="toctree-l1"><a class="reference internal" href="env.html">IDE Setup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lib.html">Installing packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lib.html">Installing packages - Micropython</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gpio.html">General Purpose Input/Output (GPIO) RP2040 &amp; ESP32</a></li>
 <li class="toctree-l1"><a class="reference internal" href="adc.html">Analog to Digital Conversion</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="i2c.html">I2C (Inter-Integrated Circuit)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -439,22 +438,48 @@ document.write(`
 <section id="wi-fi">
 <h2>Wi-Fi<a class="headerlink" href="#wi-fi" title="Link to this heading">#</a></h2>
 <p>Learn how to set up and use Wi-Fi communication on the DualMCU ONE board.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">machine</span>
-<span class="kn">import</span> <span class="nn">network</span>
-
-<span class="n">wlan</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">WLAN</span><span class="p">(</span><span class="n">network</span><span class="o">.</span><span class="n">STA_IF</span><span class="p">)</span>
-<span class="n">wlan</span><span class="o">.</span><span class="n">active</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">wlan</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;your-ssid&#39;</span><span class="p">,</span> <span class="s1">&#39;your-password&#39;</span><span class="p">)</span>
-
-<span class="k">while</span> <span class="ow">not</span> <span class="n">wlan</span><span class="o">.</span><span class="n">isconnected</span><span class="p">():</span>
-    <span class="k">pass</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Connected to Wi-Fi&#39;</span><span class="p">)</span>
-
-<span class="c1"># Check the IP address</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">wlan</span><span class="o">.</span><span class="n">ifconfig</span><span class="p">())</span>
-</pre></div>
-</div>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0"></button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1"></button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><blockquote>
+<div><p>import machine
+import network</p>
+<p>wlan = network.WLAN(network.STA_IF)
+wlan.active(True)
+wlan.connect(‘your-ssid’, ‘your-password’)</p>
+<dl class="simple">
+<dt>while not wlan.isconnected():</dt><dd><p>pass</p>
+</dd>
+</dl>
+<p>print(‘Connected to Wi-Fi’)</p>
+<p># Check the IP address
+print(wlan.ifconfig())</p>
+</div></blockquote>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><blockquote>
+<div><p>#include &lt;WiFi.h&gt;</p>
+<p>const char* ssid = “TU_SSID”;
+const char* password = “TU_PASSWORD”;</p>
+<p>void setup() {
+Serial.begin(115200);
+delay(100);</p>
+<p>Serial.print(“Conectando a “);
+Serial.println(ssid);</p>
+<p>WiFi.begin(ssid, password);</p>
+<dl class="simple">
+<dt>while (WiFi.status() != WL_CONNECTED) {</dt><dd><p>delay(500);
+Serial.print(“.”);</p>
+</dd>
+</dl>
+<p>}</p>
+<p>Serial.println(”nConectado a la red Wi-Fi”);
+Serial.print(” IP: “);
+Serial.println(WiFi.localIP());</p>
+<p>Serial.print(” MAC: “);
+Serial.println(WiFi.macAddress());
+}</p>
+<p>void loop() {
+// No se necesita hacer nada más en loop
+}</p>
+</div></blockquote>
+</div></div>
 <section id="scan-wi-fi-networks">
 <h3>Scan Wi-Fi Networks<a class="headerlink" href="#scan-wi-fi-networks" title="Link to this heading">#</a></h3>
 <p>Scan for available Wi-Fi networks and display the results on an OLED display.</p>
@@ -516,65 +541,117 @@ document.write(`
             <span class="k">break</span>  <span class="c1"># If there are fewer than 3 networks, don&#39;t loop indefinitely</span>
 </pre></div>
 </div>
-<figure class="align-center" id="id2">
-<span id="figura-sniffer"></span><a class="reference internal image-reference" href="_images/sniffer_esp32.jpg"><img alt="scan Wi-Fi networks" src="_images/sniffer_esp32.jpg" style="width: 60%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 40 </span><span class="caption-text">Scan Wi-Fi networks</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
-</figcaption>
+<figure class="align-center" id="figura-sniffer">
+<a class="reference internal image-reference" href="_images/sniffer_esp32.jpg"><img alt="scan Wi-Fi networks" src="_images/sniffer_esp32.jpg" style="width: 60%;" /></a>
 </figure>
 </section>
 </section>
 <section id="bluetooth">
 <h2>Bluetooth<a class="headerlink" href="#bluetooth" title="Link to this heading">#</a></h2>
 <p>Explore Bluetooth communication capabilities and learn how to connect to Bluetooth devices.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">bluetooth</span>
-<span class="kn">import</span> <span class="nn">time</span>
-
-<span class="c1"># Initialize Bluetooth</span>
-<span class="n">ble</span> <span class="o">=</span> <span class="n">bluetooth</span><span class="o">.</span><span class="n">BLE</span><span class="p">()</span>
-<span class="n">ble</span><span class="o">.</span><span class="n">active</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># Helper function to convert memoryview to MAC address string</span>
-<span class="k">def</span> <span class="nf">format_mac</span><span class="p">(</span><span class="n">addr</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s1">&#39;:&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:02x}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">addr</span><span class="p">)</span>
-
-<span class="c1"># Helper function to parse device name from advertising data</span>
-<span class="k">def</span> <span class="nf">decode_name</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">:</span>
-        <span class="n">ad_length</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="n">ad_type</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">ad_type</span> <span class="o">==</span> <span class="mh">0x09</span><span class="p">:</span>  <span class="c1"># Complete Local Name</span>
-            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">ad_length</span><span class="p">],</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">ad_type</span> <span class="o">==</span> <span class="mh">0x08</span><span class="p">:</span>  <span class="c1"># Shortened Local Name</span>
-            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">ad_length</span><span class="p">],</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-        <span class="n">i</span> <span class="o">+=</span> <span class="n">ad_length</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="k">return</span> <span class="kc">None</span>
-
-<span class="c1"># Callback function to handle advertising reports</span>
-<span class="k">def</span> <span class="nf">bt_irq</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>  <span class="c1"># event 5 is for advertising reports</span>
-        <span class="n">addr_type</span><span class="p">,</span> <span class="n">addr</span><span class="p">,</span> <span class="n">adv_type</span><span class="p">,</span> <span class="n">rssi</span><span class="p">,</span> <span class="n">adv_data</span> <span class="o">=</span> <span class="n">data</span>
-        <span class="n">mac_addr</span> <span class="o">=</span> <span class="n">format_mac</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
-        <span class="n">device_name</span> <span class="o">=</span> <span class="n">decode_name</span><span class="p">(</span><span class="n">adv_data</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">device_name</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Device found: </span><span class="si">{</span><span class="n">mac_addr</span><span class="si">}</span><span class="s2"> (RSSI: </span><span class="si">{</span><span class="n">rssi</span><span class="si">}</span><span class="s2">) Name: </span><span class="si">{</span><span class="n">device_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Device found: </span><span class="si">{</span><span class="n">mac_addr</span><span class="si">}</span><span class="s2"> (RSSI: </span><span class="si">{</span><span class="n">rssi</span><span class="si">}</span><span class="s2">) Name: Unknown&quot;</span><span class="p">)</span>
-<span class="c1">#             pass</span>
-
-<span class="c1"># Set the callback function</span>
-<span class="n">ble</span><span class="o">.</span><span class="n">irq</span><span class="p">(</span><span class="n">bt_irq</span><span class="p">)</span>
-
-<span class="c1"># Start active scanning</span>
-<span class="n">ble</span><span class="o">.</span><span class="n">gap_scan</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">30000</span><span class="p">,</span> <span class="mi">30000</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>  <span class="c1"># Active scan for 10 seconds with interval and window of 30ms</span>
-
-<span class="c1"># Keep the program running to allow the callback to be processed</span>
-<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0"></button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1"></button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><blockquote>
+<div><p>import bluetooth
+import time</p>
+<p># Initialize Bluetooth
+ble = bluetooth.BLE()
+ble.active(True)</p>
+<p># Helper function to convert memoryview to MAC address string
+def format_mac(addr):</p>
+<blockquote>
+<div><p>return ‘:’.join(‘{:02x}’.format(b) for b in addr)</p>
+</div></blockquote>
+<p># Helper function to parse device name from advertising data
+def decode_name(data):</p>
+<blockquote>
+<div><p>i = 0
+length = len(data)
+while i &lt; length:</p>
+<blockquote>
+<div><p>ad_length = data[i]
+ad_type = data[i + 1]
+if ad_type == 0x09:  # Complete Local Name</p>
+<blockquote>
+<div><p>return str(data[i + 2:i + 1 + ad_length], ‘utf-8’)</p>
+</div></blockquote>
+<dl class="simple">
+<dt>elif ad_type == 0x08:  # Shortened Local Name</dt><dd><p>return str(data[i + 2:i + 1 + ad_length], ‘utf-8’)</p>
+</dd>
+</dl>
+<p>i += ad_length + 1</p>
+</div></blockquote>
+<p>return None</p>
+</div></blockquote>
+<p># Callback function to handle advertising reports
+def bt_irq(event, data):</p>
+<blockquote>
+<div><dl>
+<dt>if event == 5:  # event 5 is for advertising reports</dt><dd><p>addr_type, addr, adv_type, rssi, adv_data = data
+mac_addr = format_mac(addr)
+device_name = decode_name(adv_data)
+if device_name:</p>
+<blockquote>
+<div><p>print(f”Device found: {mac_addr} (RSSI: {rssi}) Name: {device_name}”)</p>
+</div></blockquote>
+<dl class="simple">
+<dt>else:</dt><dd><p>print(f”Device found: {mac_addr} (RSSI: {rssi}) Name: Unknown”)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<p>#             pass</p>
+<p># Set the callback function
+ble.irq(bt_irq)</p>
+<p># Start active scanning
+ble.gap_scan(10000, 30000, 30000, True)  # Active scan for 10 seconds with interval and window of 30ms</p>
+<p># Keep the program running to allow the callback to be processed
+while True:</p>
+<blockquote>
+<div><p>time.sleep(1)</p>
+</div></blockquote>
+</div></blockquote>
+</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"><blockquote>
+<div><p>#include “BluetoothSerial.h”</p>
+<p>BluetoothSerial SerialBT;</p>
+<p>void setup() {
+Serial.begin(115200);
+Serial.println(” Starting Bluetooth device scan…”);</p>
+<dl class="simple">
+<dt>if (!btStart()) {</dt><dd><p>Serial.println(” Could not start Bluetooth”);
+return;</p>
+</dd>
+</dl>
+<p>}</p>
+<p>// Scan for classic Bluetooth devices
+int8_t numDevices = SerialBT.discoverAsync([](BTAdvertisedDevice* device) {</p>
+<blockquote>
+<div><p>static int found = 0;</p>
+<p>if (found &lt; 10) {
+Serial.print(” Name: “);
+Serial.println(device-&gt;getName().c_str());</p>
+<p>Serial.print(” MAC Address: “);
+Serial.println(device-&gt;getAddress().toString().c_str());</p>
+<p>Serial.println(”—————————“);
+found++;
+}</p>
+<p>// Cancel scan if 10 devices are already detected
+if (found &gt;= 10) {
+SerialBT.cancelDiscover();
+}</p>
+</div></blockquote>
+<p>});</p>
+<dl class="simple">
+<dt>if (numDevices == 0) {</dt><dd><p>Serial.println(” No devices found.”);</p>
+</dd>
+<dt>} else {</dt><dd><p>Serial.println(“Scan in progress…”);</p>
+</dd>
+</dl>
+<p>void loop() {
+// Nothing in loop
+}</p>
+</div></blockquote>
+</div></div>
 </section>
 </section>
 <section id="web-server-micropython">
@@ -639,10 +716,10 @@ it can be used to control an ESP32 running a web server.</p>
 <p>Why use a desktop web server?, you may ask. The desktop web server can be used to test the ESP32 web server
 and interact with it without having to run the code on the ESP32. This can be useful for debugging and testing
 the web server without having to upload the code to the ESP32 every time.</p>
-<figure class="align-center" id="id3">
+<figure class="align-center" id="id2">
 <span id="figure"></span><img alt="_images/server_desktop_web.png" src="_images/server_desktop_web.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 41 </span><span class="caption-text">Desktop Web Server</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 33 </span><span class="caption-text">Desktop Web Server</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The code describe methods to handle the HTTP requests. Each method receives the request and the response as parameters.
@@ -660,10 +737,10 @@ has become one of the most popular Python web application frameworks.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>app.py<span class="w"> </span>--ip<span class="w"> </span>&lt;ESP32_IP&gt;
 </pre></div>
 </div>
-<figure class="align-center" id="id4">
+<figure class="align-center" id="id3">
 <span id="figure4"></span><img alt="_images/server_desktop.png" src="_images/server_desktop.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 42 </span><span class="caption-text">Desktop Web Server</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 34 </span><span class="caption-text">Desktop Web Server</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -672,10 +749,10 @@ has become one of the most popular Python web application frameworks.</p>
 <h3>ESP32-MicroPython<a class="headerlink" href="#esp32-micropython" title="Link to this heading">#</a></h3>
 <p>The directory <cite>ESP32-MicroPython</cite> contains the files for the ESP32 web server. The <cite>main.py</cite> file
 contains the code for the ESP32 web server.</p>
-<figure class="align-center" id="id5">
+<figure class="align-center" id="id4">
 <span id="figure5"></span><img alt="_images/server_esp32.png" src="_images/server_esp32.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 43 </span><span class="caption-text">ESP32 Web Server</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 35 </span><span class="caption-text">ESP32 Web Server</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -783,7 +860,7 @@ By Cesar Bautista
 
   <p class="copyright">
     
-      © Copyright 2025, Unit Electronics.
+      © Copyright 2024, Unit Electronics.
       <br/>
     
   </p>

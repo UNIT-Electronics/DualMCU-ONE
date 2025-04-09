@@ -6,6 +6,11 @@ the same pinout as the Arduino UNO Rev3, making it easy to use with existing shi
 The board also features a USB-C connector for power and data, a microSD card slot, and a dual-core architecture
 with an RP2040 and an ESP32 microcontrollers.
 
+.. warning::
+    
+   The DualMCU ONE board is designed to be compatible with Arduino shields, but not all shields may work perfectly due to differences in voltage levels and pin configurations. 
+   Always check the specifications of the shield you are using to ensure compatibility.
+
 .. _figure_dualmcu_one_n:
 .. figure:: /_static/dualmcu_one.png
    :align: center
