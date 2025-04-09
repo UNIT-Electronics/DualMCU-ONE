@@ -439,46 +439,54 @@ document.write(`
 <h2>Wi-Fi<a class="headerlink" href="#wi-fi" title="Link to this heading">#</a></h2>
 <p>Learn how to set up and use Wi-Fi communication on the DualMCU ONE board.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0"></button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1"></button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><blockquote>
-<div><p>import machine
-import network</p>
-<p>wlan = network.WLAN(network.STA_IF)
-wlan.active(True)
-wlan.connect(‘your-ssid’, ‘your-password’)</p>
-<dl class="simple">
-<dt>while not wlan.isconnected():</dt><dd><p>pass</p>
-</dd>
-</dl>
-<p>print(‘Connected to Wi-Fi’)</p>
-<p># Check the IP address
-print(wlan.ifconfig())</p>
-</div></blockquote>
-</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><blockquote>
-<div><p>#include &lt;WiFi.h&gt;</p>
-<p>const char* ssid = “TU_SSID”;
-const char* password = “TU_PASSWORD”;</p>
-<p>void setup() {
-Serial.begin(115200);
-delay(100);</p>
-<p>Serial.print(“Conectando a “);
-Serial.println(ssid);</p>
-<p>WiFi.begin(ssid, password);</p>
-<dl class="simple">
-<dt>while (WiFi.status() != WL_CONNECTED) {</dt><dd><p>delay(500);
-Serial.print(“.”);</p>
-</dd>
-</dl>
-<p>}</p>
-<p>Serial.println(”nConectado a la red Wi-Fi”);
-Serial.print(” IP: “);
-Serial.println(WiFi.localIP());</p>
-<p>Serial.print(” MAC: “);
-Serial.println(WiFi.macAddress());
-}</p>
-<p>void loop() {
-// No se necesita hacer nada más en loop
-}</p>
-</div></blockquote>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">MicroPython</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">machine</span>
+<span class="kn">import</span> <span class="nn">network</span>
+
+<span class="n">wlan</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">WLAN</span><span class="p">(</span><span class="n">network</span><span class="o">.</span><span class="n">STA_IF</span><span class="p">)</span>
+<span class="n">wlan</span><span class="o">.</span><span class="n">active</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">wlan</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;your-ssid&#39;</span><span class="p">,</span> <span class="s1">&#39;your-password&#39;</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="ow">not</span> <span class="n">wlan</span><span class="o">.</span><span class="n">isconnected</span><span class="p">():</span>
+    <span class="k">pass</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Connected to Wi-Fi&#39;</span><span class="p">)</span>
+
+<span class="c1"># Check the IP address</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">wlan</span><span class="o">.</span><span class="n">ifconfig</span><span class="p">())</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;WiFi.h&gt;</span>
+
+<span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">ssid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;TU_SSID&quot;</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;TU_PASSWORD&quot;</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+<span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Conectando a &quot;</span><span class="p">);</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">ssid</span><span class="p">);</span>
+
+<span class="n">WiFi</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="n">ssid</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">);</span>
+
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">WiFi</span><span class="p">.</span><span class="n">status</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">WL_CONNECTED</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Conectado a la red Wi-Fi&quot;</span><span class="p">);</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot; IP: &quot;</span><span class="p">);</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">WiFi</span><span class="p">.</span><span class="n">localIP</span><span class="p">());</span>
+
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot; MAC: &quot;</span><span class="p">);</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">WiFi</span><span class="p">.</span><span class="n">macAddress</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="c1">// No se necesita hacer nada más en loop</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div></div>
 <section id="scan-wi-fi-networks">
 <h3>Scan Wi-Fi Networks<a class="headerlink" href="#scan-wi-fi-networks" title="Link to this heading">#</a></h3>
@@ -550,107 +558,100 @@ Serial.println(WiFi.macAddress());
 <h2>Bluetooth<a class="headerlink" href="#bluetooth" title="Link to this heading">#</a></h2>
 <p>Explore Bluetooth communication capabilities and learn how to connect to Bluetooth devices.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0"></button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1"></button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><blockquote>
-<div><p>import bluetooth
-import time</p>
-<p># Initialize Bluetooth
-ble = bluetooth.BLE()
-ble.active(True)</p>
-<p># Helper function to convert memoryview to MAC address string
-def format_mac(addr):</p>
-<blockquote>
-<div><p>return ‘:’.join(‘{:02x}’.format(b) for b in addr)</p>
-</div></blockquote>
-<p># Helper function to parse device name from advertising data
-def decode_name(data):</p>
-<blockquote>
-<div><p>i = 0
-length = len(data)
-while i &lt; length:</p>
-<blockquote>
-<div><p>ad_length = data[i]
-ad_type = data[i + 1]
-if ad_type == 0x09:  # Complete Local Name</p>
-<blockquote>
-<div><p>return str(data[i + 2:i + 1 + ad_length], ‘utf-8’)</p>
-</div></blockquote>
-<dl class="simple">
-<dt>elif ad_type == 0x08:  # Shortened Local Name</dt><dd><p>return str(data[i + 2:i + 1 + ad_length], ‘utf-8’)</p>
-</dd>
-</dl>
-<p>i += ad_length + 1</p>
-</div></blockquote>
-<p>return None</p>
-</div></blockquote>
-<p># Callback function to handle advertising reports
-def bt_irq(event, data):</p>
-<blockquote>
-<div><dl>
-<dt>if event == 5:  # event 5 is for advertising reports</dt><dd><p>addr_type, addr, adv_type, rssi, adv_data = data
-mac_addr = format_mac(addr)
-device_name = decode_name(adv_data)
-if device_name:</p>
-<blockquote>
-<div><p>print(f”Device found: {mac_addr} (RSSI: {rssi}) Name: {device_name}”)</p>
-</div></blockquote>
-<dl class="simple">
-<dt>else:</dt><dd><p>print(f”Device found: {mac_addr} (RSSI: {rssi}) Name: Unknown”)</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</div></blockquote>
-<p>#             pass</p>
-<p># Set the callback function
-ble.irq(bt_irq)</p>
-<p># Start active scanning
-ble.gap_scan(10000, 30000, 30000, True)  # Active scan for 10 seconds with interval and window of 30ms</p>
-<p># Keep the program running to allow the callback to be processed
-while True:</p>
-<blockquote>
-<div><p>time.sleep(1)</p>
-</div></blockquote>
-</div></blockquote>
-</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"><blockquote>
-<div><p>#include “BluetoothSerial.h”</p>
-<p>BluetoothSerial SerialBT;</p>
-<p>void setup() {
-Serial.begin(115200);
-Serial.println(” Starting Bluetooth device scan…”);</p>
-<dl class="simple">
-<dt>if (!btStart()) {</dt><dd><p>Serial.println(” Could not start Bluetooth”);
-return;</p>
-</dd>
-</dl>
-<p>}</p>
-<p>// Scan for classic Bluetooth devices
-int8_t numDevices = SerialBT.discoverAsync([](BTAdvertisedDevice* device) {</p>
-<blockquote>
-<div><p>static int found = 0;</p>
-<p>if (found &lt; 10) {
-Serial.print(” Name: “);
-Serial.println(device-&gt;getName().c_str());</p>
-<p>Serial.print(” MAC Address: “);
-Serial.println(device-&gt;getAddress().toString().c_str());</p>
-<p>Serial.println(”—————————“);
-found++;
-}</p>
-<p>// Cancel scan if 10 devices are already detected
-if (found &gt;= 10) {
-SerialBT.cancelDiscover();
-}</p>
-</div></blockquote>
-<p>});</p>
-<dl class="simple">
-<dt>if (numDevices == 0) {</dt><dd><p>Serial.println(” No devices found.”);</p>
-</dd>
-<dt>} else {</dt><dd><p>Serial.println(“Scan in progress…”);</p>
-</dd>
-</dl>
-<p>void loop() {
-// Nothing in loop
-}</p>
-</div></blockquote>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">MicroPython</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">bluetooth</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># Initialize Bluetooth</span>
+<span class="n">ble</span> <span class="o">=</span> <span class="n">bluetooth</span><span class="o">.</span><span class="n">BLE</span><span class="p">()</span>
+<span class="n">ble</span><span class="o">.</span><span class="n">active</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Helper function to convert memoryview to MAC address string</span>
+<span class="k">def</span> <span class="nf">format_mac</span><span class="p">(</span><span class="n">addr</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s1">&#39;:&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:02x}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">addr</span><span class="p">)</span>
+
+<span class="c1"># Helper function to parse device name from advertising data</span>
+<span class="k">def</span> <span class="nf">decode_name</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">:</span>
+        <span class="n">ad_length</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">ad_type</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">ad_type</span> <span class="o">==</span> <span class="mh">0x09</span><span class="p">:</span>  <span class="c1"># Complete Local Name</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">ad_length</span><span class="p">],</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">ad_type</span> <span class="o">==</span> <span class="mh">0x08</span><span class="p">:</span>  <span class="c1"># Shortened Local Name</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">ad_length</span><span class="p">],</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="n">ad_length</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="kc">None</span>
+
+<span class="c1"># Callback function to handle advertising reports</span>
+<span class="k">def</span> <span class="nf">bt_irq</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>  <span class="c1"># event 5 is for advertising reports</span>
+        <span class="n">addr_type</span><span class="p">,</span> <span class="n">addr</span><span class="p">,</span> <span class="n">adv_type</span><span class="p">,</span> <span class="n">rssi</span><span class="p">,</span> <span class="n">adv_data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="n">mac_addr</span> <span class="o">=</span> <span class="n">format_mac</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
+        <span class="n">device_name</span> <span class="o">=</span> <span class="n">decode_name</span><span class="p">(</span><span class="n">adv_data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">device_name</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Device found: </span><span class="si">{</span><span class="n">mac_addr</span><span class="si">}</span><span class="s2"> (RSSI: </span><span class="si">{</span><span class="n">rssi</span><span class="si">}</span><span class="s2">) Name: </span><span class="si">{</span><span class="n">device_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Device found: </span><span class="si">{</span><span class="n">mac_addr</span><span class="si">}</span><span class="s2"> (RSSI: </span><span class="si">{</span><span class="n">rssi</span><span class="si">}</span><span class="s2">) Name: Unknown&quot;</span><span class="p">)</span>
+<span class="c1">#             pass</span>
+
+<span class="c1"># Set the callback function</span>
+<span class="n">ble</span><span class="o">.</span><span class="n">irq</span><span class="p">(</span><span class="n">bt_irq</span><span class="p">)</span>
+
+<span class="c1"># Start active scanning</span>
+<span class="n">ble</span><span class="o">.</span><span class="n">gap_scan</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">30000</span><span class="p">,</span> <span class="mi">30000</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>  <span class="c1"># Active scan for 10 seconds with interval and window of 30ms</span>
+
+<span class="c1"># Keep the program running to allow the callback to be processed</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;BluetoothSerial.h&quot;</span>
+
+<span class="n">BluetoothSerial</span><span class="w"> </span><span class="n">SerialBT</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot; Starting Bluetooth device scan...&quot;</span><span class="p">);</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">btStart</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot; Could not start Bluetooth&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Scan for classic Bluetooth devices</span>
+<span class="kt">int8_t</span><span class="w"> </span><span class="n">numDevices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SerialBT</span><span class="p">.</span><span class="n">discoverAsync</span><span class="p">([](</span><span class="n">BTAdvertisedDevice</span><span class="o">*</span><span class="w"> </span><span class="n">device</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">found</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">found</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot; Name: &quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">device</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">().</span><span class="n">c_str</span><span class="p">());</span>
+
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot; MAC Address: &quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">device</span><span class="o">-&gt;</span><span class="n">getAddress</span><span class="p">().</span><span class="n">toString</span><span class="p">().</span><span class="n">c_str</span><span class="p">());</span>
+
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;---------------------------&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">found</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Cancel scan if 10 devices are already detected</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">found</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">SerialBT</span><span class="p">.</span><span class="n">cancelDiscover</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">numDevices</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot; No devices found.&quot;</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Scan in progress...&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="c1">// Nothing in loop</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div></div>
 </section>
 </section>

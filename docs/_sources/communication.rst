@@ -10,7 +10,7 @@ Learn how to set up and use Wi-Fi communication on the DualMCU ONE board.
 
 .. tabs::
 
-    .. tab::
+    .. tab:: MicroPython
 
         .. code-block:: python
 
@@ -28,7 +28,8 @@ Learn how to set up and use Wi-Fi communication on the DualMCU ONE board.
 
             # Check the IP address
             print(wlan.ifconfig())
-    .. tab::
+
+    .. tab:: C++
 
         .. code-block:: c++
 
@@ -149,7 +150,9 @@ Bluetooth
 Explore Bluetooth communication capabilities and learn how to connect to Bluetooth devices.
 
 .. tabs::
-    .. tab::
+    
+    .. tab:: MicroPython
+
         .. code-block:: python 
 
             import bluetooth
@@ -198,7 +201,9 @@ Explore Bluetooth communication capabilities and learn how to connect to Bluetoo
             # Keep the program running to allow the callback to be processed
             while True:
                 time.sleep(1)
-    .. tab::
+
+    .. tab:: C++
+
         .. code-block:: c++
 
             #include "BluetoothSerial.h"

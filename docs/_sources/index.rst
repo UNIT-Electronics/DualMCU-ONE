@@ -19,6 +19,11 @@ DualMCU ONE Getting Started
 
 This guide is designed to help developers familiarize themselves with the DualMCU ONE development board and its capabilities. Whether you’re a beginner or an experienced developer, this guide will provide you with the knowledge and resources you need to start developing with the DualMCU ONE.
 
+
+.. warning::
+   The DualMCU ONE uses 3.3V logic levels, unlike the Arduino Uno, which operates at 5V. 
+   Ensure that any connected shields or peripherals are compatible with 3.3V logic to prevent damage.
+
 .. _figura3-dualmcu-one:
 
 .. figure::  /_static/product/IMG_3136.jpg
